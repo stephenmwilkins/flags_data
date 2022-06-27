@@ -1,0 +1,23 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: redshift, datatype: float64, description: redshift}
+# - {name: M*, datatype: float64, description: characteristic absolute magnitude}
+# - {name: log10phi*, datatype: float64, description: log10(number density/Mpc^-3)}
+# - {name: alpha, datatype: float64, description: faint end slope}
+# meta: !!omap
+# - {name: Santa\ Cruz\ SAM}
+# - {model type: semi-analytical}
+# - {type: Schechter}
+# - {ref: Yung+2018}
+# - {ads: 'https://ui.adsabs.harvard.edu/abs/2019MNRAS.483.2983Y/abstract'}
+# - {arxiv: 'https://arxiv.org/abs/1803.09761'}
+# schema: astropy-2.0
+redshift M* log10phi* alpha
+4.0 -20.717 -2.5015515968260003 -1.525
+5.0 -20.774 -2.6829818989518883 -1.602
+6.0 -20.702 -2.869023308394383 -1.672
+7.0 -20.609 -3.087246696328677 -1.715
+8.0 -20.66 -3.51427857351842 -1.825
+9.0 -20.584 -3.876148359032914 -1.879
+10.0 -20.373 -4.275724130399211 -1.967

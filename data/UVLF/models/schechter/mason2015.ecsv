@@ -1,0 +1,28 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: redshift, datatype: float64, description: redshift}
+# - {name: M*, datatype: float64, description: characteristic absolute magnitude}
+# - {name: log10phi*, datatype: float64, description: log10(number density/Mpc^-3)}
+# - {name: alpha, datatype: float64, description: faint end slope}
+# meta: !!omap
+# - {name: Mason+2015}
+# - {model type: semi-empirical}
+# - {type: Schechter}
+# - {ref: Mason+2015}
+# - {ads: 'https://ui.adsabs.harvard.edu/abs/2015ApJ...813...21M/abstract'}
+# - {arxiv: 'https://arxiv.org/abs/1508.01204'}
+# schema: astropy-2.0
+redshift M* log10phi* alpha
+0.0 -19.9 -2.97 -1.68
+2.0 -20.3 -2.52 -1.46
+4.0 -21.2 -2.93 -1.64
+5.0 -21.2 -3.12 -1.75
+6.0 -20.9 -3.19 -1.83
+7.0 -21.0 -3.48 -1.95
+8.0 -21.3 -4.03 -2.1
+9.0 -21.2 -4.5 -2.26
+10.0 -21.1 -5.12 -2.47
+12.0 -21.0 -5.94 -2.74
+14.0 -20.9 -7.05 -3.11
+16.0 -20.7 -8.25 -3.51
