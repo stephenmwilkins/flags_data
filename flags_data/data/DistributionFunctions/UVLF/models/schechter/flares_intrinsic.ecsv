@@ -1,0 +1,22 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: redshift, datatype: float64, description: redshift}
+# - {name: M*, datatype: float64, description: characteristic absolute magnitude}
+# - {name: log10phi*, datatype: float64, description: log10(number density/Mpc^-3)}
+# - {name: alpha, datatype: float64, description: faint end slope}
+# meta: !!omap
+# - {name: 'FLARES\ [Intrinsic]'}
+# - {model type: hydro}
+# - {type: Schechter}
+# - {ref: Vijayan+2020}
+# - {ads: 'https://ui.adsabs.harvard.edu/abs/2020arXiv200806057V/abstract'}
+# - {arxiv: 'https://arxiv.org/abs/2008.06057'}
+# schema: astropy-2.0
+redshift M* log10phi* alpha
+5.0 -21.79285493467043 -3.6305001277308033 -1.9772870410668615
+6.0 -21.59150068090623 -3.875836361821652 -2.1213054661801465
+7.0 -22.255242417520705 -4.892210648014174 -2.492156665448407
+8.0 -22.027768435403182 -5.254864977740009 -2.7226300850912906
+9.0 -21.34875019363828 -4.95384659793114 -2.722532096381987
+10.0 -20.55601510467414 -4.877348845014224 -3.148004062716375

@@ -1,0 +1,20 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: redshift, datatype: float64, description: redshift}
+# - {name: M*, datatype: float64, description: characteristic absolute magnitude}
+# - {name: log10phi*, datatype: float64, description: log10(number density/Mpc^-3)}
+# - {name: alpha, datatype: float64, description: faint end slope}
+# meta: !!omap
+# - {name: 'Illustris TNG: Model-B'}
+# - {model type: hydro}
+# - {type: Schechter}
+# - {ref: Vogelsberger+2019}
+# - {ads: 'https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5167V/abstract'}
+# - {arxiv: 'https://arxiv.org/abs/1904.07238'}
+# schema: astropy-2.0
+redshift M* log10phi* alpha
+5.0 -20.95 -3.107 -1.884
+6.0 -20.52 -3.025 -1.833
+7.0 -20.58 -3.418 -1.967
+8.0 -20.86 -4.111 -2.216

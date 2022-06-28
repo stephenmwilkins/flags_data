@@ -1,0 +1,22 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: redshift, datatype: float64, description: redshift}
+# - {name: M*, datatype: float64, description: characteristic absolute magnitude}
+# - {name: log10phi*, datatype: float64, description: log10(number density/Mpc^-3)}
+# - {name: alpha, datatype: float64, description: faint end slope}
+# meta: !!omap
+# - {name: FIRE-2}
+# - {model type: hydro}
+# - {type: Schechter}
+# - {ref: Ma+2019}
+# - {ads: 'https://ui.adsabs.harvard.edu/abs/2019MNRAS.487.1844M/abstract'}
+# - {arxiv: 'https://arxiv.org/abs/1902.10152'}
+# schema: astropy-2.0
+redshift M* log10phi* alpha
+5.0 -21.77 -3.55 -1.9
+6.0 -21.34 -3.44 -1.87
+7.0 -21.73 -4.09 -2.05
+8.0 -20.97 -3.98 -2.08
+9.0 -21.3 -4.57 -2.2
+10.0 -20.9 -4.74 -2.31
