@@ -2,10 +2,22 @@
 Model predictions and observational constraints in the First Light And Reionisation Epoch
 
 
-### Distribution Functions
+## Distribution Functions
 
+#### UV Luminosity Function
+
+![This is an image](docs/figs/LUVDF_redshift_range.png)
 ![This is an image](docs/figs/LUVDF_redshift_log10X_range.png)
 
 
+#### Galaxy Stellar Mass Function
 
-### Scaling Relations
+![This is an image](docs/figs/Mstar_redshift_range.png)
+![This is an image](docs/figs/Mstar_redshift_log10X_range.png)
+
+#### SFR Distribution Function
+
+![This is an image](docs/figs/SFRDF_redshift_range.png)
+![This is an image](docs/figs/SFRDF_redshift_log10X_range.png)
+
+## Scaling Relations
