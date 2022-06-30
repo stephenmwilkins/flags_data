@@ -4,24 +4,24 @@ Model predictions and observational constraints in the First Light And Reionisat
 
 ## Distribution Functions
 
-### [UV Luminosity Function](docs/df/LUV.md)
+- ### [UV Luminosity Function](docs/df/LUV.md)
 
-### [Galaxy Stellar Mass Function](docs/df/Mstar.md)
+- ### [Galaxy Stellar Mass Function](docs/df/Mstar.md)
 
-### [SFR Distribution Function](docs/df/SFR.md)
+- ### [SFR Distribution Function](docs/df/SFR.md)
 
 ## Scaling Relations
 
-#### $\rm M_{\rm tot}\ -\ M_{\star}$
-#### $\rm M_{\star}$ - SFR
-#### $\rm M_{\star}$ - sSFR
+- #### $\rm M_{\rm tot}\ -\ M_{\star}$
 
-- SFR
-- sSFR
-- $r_{0.5, \star}$
-- age
-- $Z_{\star}$
-- $Z_{\rm gas}$
+- #### $\rm M_{\star}\ -\ SFR$
+- #### $\rm M_{\star}\ -\ sSFR$
+- #### $\rm M_{\star}\ -\ age$
+- #### $\rm M_{\star}\ -\ Z_{\star}$
+- #### $\rm M_{\star}\ -\ Z_{gas}$
+- #### $\rm M_{\star}\ -\ r_{0.5,\star}$
+
+
 
 ### $L_{\rm UV}$
 
