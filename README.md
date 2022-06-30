@@ -12,8 +12,8 @@ Model predictions and observational constraints in the First Light And Reionisat
 
 #### Galaxy Stellar Mass Function
 
-![This is an image](docs/figs/Mstar_redshift_range.png)
-![This is an image](docs/figs/Mstar_redshift_log10X_range.png)
+![This is an image](docs/figs/MstarDF_redshift_range.png)
+![This is an image](docs/figs/MstarDF_redshift_log10X_range.png)
 
 #### SFR Distribution Function
 
