@@ -7,34 +7,43 @@ import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 
-import flare.plt as fplt
+# import flare.plt as fplt
 
 from flags_data.utilities import bin_centres
 import flags_data.distribution_functions as df
 
 
 
-model = 'flares'
-
-df_type = 'UVLF'
 
 
-l = df.ListDatasets(df_type = df_type)
+df_type = 'LUV'
 
 
-for dataset_type in ['all', 'models', 'models/schechter','models/binned','obs','obs/schechter','obs/binned']:
-    print(dataset_type, l.list(dataset_type))
+# --- get lists of the available for this df_type
+for datasets in ['', 'models', 'models/schechter','models/binned','obs','obs/schechter','obs/binned']:
+    print(datasets, df.list_datasets(f'{df_type}/{datasets}'))
+
+# --- print dataset info for collections of datasets
+dataset_info = df.DatasetInfo(datasets = df_type)
+dataset_info = df.DatasetInfo(datasets = f'{df_type}/models/binned')
 
 
+# --- create a redshift range plot of available models/observations
+dataset_info = df.DatasetInfo(datasets = df_type)
+fig, ax = dataset_info.plot_redshift_range()
+plt.show()
+# fig.savefig(f'figs/{df_type}DF_redshift_range.pdf')
 
-dataset_info = df.DatasetInfo(df_type = df_type)
 
-dataset_info = df.DatasetInfo(datasets = 'models/binned', df_type = df_type)
-
-fig, ax = dataset_info.plot_redshift_luminosity_range()
+# --- create a redshift luminosity plot of available models/observations
+dataset_info = df.DatasetInfo(datasets = f'{df_type}/models/binned')
+fig, ax = dataset_info.plot_redshift_log10X_range()
 # plt.show()
-fig.savefig('figs/redshift_luminosity_range.pdf')
+fig.savefig(f'figs/{df_type}DF_redshift_log10X_range.pdf')
 
+
+
+# model = 'flares'
 
 #
 #
