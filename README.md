@@ -10,10 +10,8 @@ Model predictions and observational constraints in the First Light And Reionisat
 ![This is an image](docs/figs/LUVDF_redshift_log10X_range.png)
 
 
-### Galaxy Stellar Mass Function
+### [Galaxy Stellar Mass Function](docs/df/Mstar.md)
 
-![This is an image](docs/figs/MstarDF_redshift_range.png)
-![This is an image](docs/figs/MstarDF_redshift_log10X_range.png)
 
 ### SFR Distribution Function
 
