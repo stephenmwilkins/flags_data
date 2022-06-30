@@ -97,12 +97,23 @@ class DatasetInfo:
 
     def plot_redshift_range(self, cmap = 'cmr.guppy'):
 
-        fig = plt.figure(figsize = (5, 4.5))
+
+        n_models = len(self.models)
+
+        xtotal_ = 7.  # in "
+
+        bottom_ = 0.35  # in "
+        height_ = 0.25 * n_models  # in "
+        top_ = 0.1  # in "
+        ytotal_ = bottom_ + height_ + top_  # in "
 
         left  = 0.4
-        height = 0.8
-        bottom = 0.15
         width = 0.55
+
+        bottom = bottom_/ytotal_
+        height = height_/ytotal_
+
+        fig = plt.figure(figsize = (xtotal_, ytotal_))
 
         ax = fig.add_axes((left, bottom, width, height))
 
@@ -113,25 +124,25 @@ class DatasetInfo:
 
         for i, short_model_name in enumerate(sorted(self.short_models)):
 
-            print(short_model_name)
-
             m = read(self.long_from_short[short_model_name], data_dir = self.data_dir)
 
             label = rf'$\rm \mathbf{{ {m.name} }}\ [{m.df_type}]$'
-            ax.text(-0.5, i + 0.2, label, fontsize = 8, ha='right')
+            ax.text(3.3, i, label, fontsize = 8, ha='right', va = 'center')
 
-            if m.references:
-
-                articles = [list(ads.SearchQuery(bibcode=bibcode))[0] for bibcode in m.references]
-                refs = [f"{article.first_author.split(',')[0]}+{article.year}"  for article in articles]
-
-                ax.text(-0.5, i - 0.2, ', '.join(refs), fontsize = 6, ha='right', color = '0.5')
+            # if m.references:
+            #
+            #     articles = [list(ads.SearchQuery(bibcode=bibcode))[0] for bibcode in m.references]
+            #     refs = [f"{article.first_author.split(',')[0]}+{article.year}"  for article in articles]
+            #
+            #     ax.text(3.3, i - 0.2, ', '.join(refs), fontsize = 6, ha='right', color = '0.5', va = 'center')
 
             z_min.append(np.min(m.redshifts))
             z_extent.append(np.max(m.redshifts)-np.min(m.redshifts))
 
         ax.barh(np.arange(len(self.models)), z_extent, left = z_min, color = colors, align='center')
 
+        ax.set_xlim([3.5, 15.5])
+        ax.set_ylim([-0.75, n_models - 0.25])
         ax.set_yticks([])
         ax.set_xlabel(r'$\rm z$')
 
@@ -161,6 +172,7 @@ class DatasetInfo:
 
                 ax.text(x[0] + 0.1, y1[0]+0.4, rf'$\rm {m.name}$', fontsize = 10,  rotation = 90., color = color)
 
+        ax.set_xlim([3.5, 15.5])
         ax.set_ylabel(label(m.log10x, m.log10x_unit))
         ax.set_xlabel(r'$\rm z$')
 

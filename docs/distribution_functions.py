@@ -43,5 +43,5 @@ def make_range_plots(df_type):
 
 if __name__ == "__main__":
 
-    for df_type in ['LUV']: #,'SFR'
+    for df_type in ['LUV','Mstar','SFR']: #,'SFR'
         make_range_plots(df_type)
