@@ -20,9 +20,9 @@ Model predictions and observational constraints in the First Light And Reionisat
 - #### $\rm M_{\star}\ -\ Z_{\star}$
 - #### $\rm M_{\star}\ -\ Z_{gas}$
 - #### $\rm M_{\star}\ -\ r_{0.5,\star}$
+- #### $\rm M_{\star}\ -\ L_{UV}$
 
+- #### $\rm L_{UV}\ -\ \beta$
+- #### $\rm L_{UV}\ -\ r_{0.5,UV}$
+- #### $\rm L_{UV}\ -\ EW(OIII+H\beta)$
 
-
-### $L_{\rm UV}$
-
-- $\beta$
