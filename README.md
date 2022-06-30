@@ -4,20 +4,39 @@ Model predictions and observational constraints in the First Light And Reionisat
 
 ## Distribution Functions
 
-#### UV Luminosity Function
+### UV Luminosity Function
 
 ![This is an image](docs/figs/LUVDF_redshift_range.png)
 ![This is an image](docs/figs/LUVDF_redshift_log10X_range.png)
 
 
-#### Galaxy Stellar Mass Function
+### Galaxy Stellar Mass Function
 
-![This is an image](docs/figs/Mstar_redshift_range.png)
-![This is an image](docs/figs/Mstar_redshift_log10X_range.png)
+![This is an image](docs/figs/MstarDF_redshift_range.png)
+![This is an image](docs/figs/MstarDF_redshift_log10X_range.png)
 
-#### SFR Distribution Function
+### SFR Distribution Function
 
 ![This is an image](docs/figs/SFRDF_redshift_range.png)
 ![This is an image](docs/figs/SFRDF_redshift_log10X_range.png)
 
 ## Scaling Relations
+
+
+
+### $M_{\rm tot}$
+
+- $M_{\star}$
+
+### $M_{\star}$
+
+- SFR
+- sSFR
+- $r_{0.5, \star}$
+- age
+- $Z_{\star}$
+- $Z_{\rm gas}$
+
+### $L_{\rm UV}$
+
+- $\beta$
