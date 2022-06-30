@@ -12,11 +12,9 @@ Model predictions and observational constraints in the First Light And Reionisat
 
 ## Scaling Relations
 
-### $M_{\rm tot}$
-
-- $M_{\star}$
-
-### $M_{\star}$
+#### $\rm M_{\rm tot}\ -\ M_{\star}$
+#### $\rm M_{\star}$ - SFR
+#### $\rm M_{\star}$ - sSFR
 
 - SFR
 - sSFR
