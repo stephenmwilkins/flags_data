@@ -9,9 +9,7 @@
 # - {name: Mason+2015}
 # - {model type: semi-empirical}
 # - {type: Schechter}
-# - {ref: Mason+2015}
-# - {ads: 'https://ui.adsabs.harvard.edu/abs/2015ApJ...813...21M/abstract'}
-# - {arxiv: 'https://arxiv.org/abs/1508.01204'}
+# - references: [2015ApJ...813...21M]
 # schema: astropy-2.0
 redshift M* log10phi* alpha
 0.0 -19.9 -2.97 -1.68

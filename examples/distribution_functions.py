@@ -42,42 +42,14 @@ fig, ax = dataset_info.plot_redshift_log10X_range()
 fig.savefig(f'figs/{df_type}DF_redshift_log10X_range.pdf')
 
 
+datasets = 'LUV/models/binned'
+z = 10.0
 
-# model = 'flares'
+di = df.DatasetInfo(datasets = datasets)
+di.get_info()
+dataset_z = di.get_datasets_at_z(z)
 
-#
-#
-#
-# lf_binned = df.read('../data/DistributionFunctions/UVLF/models/binned/flares')
-#
-# lf_schechter = df.read('../data/DistributionFunctions/UVLF/models/Schechter/flares')
-#
-#
-# # --- make a simple plot of the the luminosity function
-#
-# z = 5.0
-#
-# fig, ax = plots.simple_fig()
-#
-# # --- plot the binned LF
-# ax.step(lf_binned.log10L[z], lf_binned.log10phi[z], where = 'mid')
-#
-# # --- plot the Schechter LF
-# log10L = lf_binned.log10L[z] # --- use the same binned as the binned LF
-# log10phi = lf_schechter.L(z).log10phi_binned(log10L) # --- determine phi (density/dex)
-# ax.plot(bin_centres(log10L), log10phi)
-#
-# # --- add axis lavels
-# ax.set_xlabel(r'$\rm \log_{10}(L/erg\ s^{-1}\ Hz^{-1}) $')
-# ax.set_ylabel(r'$\rm \log_{10}(\phi/Mpc^{-3}\ dex^{-1}) $')
-#
-# plt.show()
-# fig.clf()
-#
-#
-#
-#
-#
-# # --- this will produce an automated plot for different redshifts and models
-# fig, ax = plots.lf_plot(models = [lf_binned, lf_schechter], x_range = [27.5, 30.5], y_range = [-8., 0.0], redshifts = lf_schechter.redshifts)
-# plt.show()
+
+# --- plot a list of (dataset, z); in this case all at the same redshift.
+fig, ax = df.plots.df(dataset_z)
+fig.savefig(f"figs/{datasets.replace('/','-')}_{z}.pdf")

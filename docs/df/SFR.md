@@ -1,5 +1,7 @@
 
 # SFR Distribution Function
 
-![This is an image](../figs/SFRDF_redshift_range.png)
-![This is an image](../figs/SFRDF_redshift_log10X_range.png)
+![](../figs/DF/SFR/z_r.png)
+![](../figs/DF/SFR/z_log10x_r.png)
+![](../figs/DF/SFR/models-binned.png)
+<!-- ![](../figs/DF/SFR/models-schechter.png) -->

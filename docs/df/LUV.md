@@ -1,5 +1,7 @@
 
 # UV Luminosity Function
 
-![This is an image](../figs/LUVDF_redshift_range.png)
-![This is an image](../figs/LUVDF_redshift_log10X_range.png)
+![](../figs/DF/LUV/z_r.png)
+![](../figs/DF/LUV/z_log10x_r.png)
+![](../figs/DF/LUV/models-binned.png)
+![](../figs/DF/LUV/models-schechter.png)

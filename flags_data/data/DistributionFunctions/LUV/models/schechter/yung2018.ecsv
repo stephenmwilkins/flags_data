@@ -6,12 +6,10 @@
 # - {name: log10phi*, datatype: float64, description: log10(number density/Mpc^-3)}
 # - {name: alpha, datatype: float64, description: faint end slope}
 # meta: !!omap
-# - {name: Santa\ Cruz\ SAM}
+# - {name: Santa Cruz SAM}
 # - {model type: semi-analytical}
 # - {type: Schechter}
-# - {ref: Yung+2018}
-# - {ads: 'https://ui.adsabs.harvard.edu/abs/2019MNRAS.483.2983Y/abstract'}
-# - {arxiv: 'https://arxiv.org/abs/1803.09761'}
+# - references: [2019MNRAS.483.2983Y]
 # schema: astropy-2.0
 redshift M* log10phi* alpha
 4.0 -20.717 -2.5015515968260003 -1.525

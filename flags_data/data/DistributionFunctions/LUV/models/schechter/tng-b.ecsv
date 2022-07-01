@@ -9,9 +9,7 @@
 # - {name: 'Illustris TNG: Model-B'}
 # - {model type: hydro}
 # - {type: Schechter}
-# - {ref: Vogelsberger+2019}
-# - {ads: 'https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5167V/abstract'}
-# - {arxiv: 'https://arxiv.org/abs/1904.07238'}
+# - references: [2020MNRAS.492.5167V]
 # schema: astropy-2.0
 redshift M* log10phi* alpha
 5.0 -20.95 -3.107 -1.884

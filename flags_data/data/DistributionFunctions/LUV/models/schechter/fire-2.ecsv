@@ -9,9 +9,7 @@
 # - {name: FIRE-2}
 # - {model type: hydro}
 # - {type: Schechter}
-# - {ref: Ma+2019}
-# - {ads: 'https://ui.adsabs.harvard.edu/abs/2019MNRAS.487.1844M/abstract'}
-# - {arxiv: 'https://arxiv.org/abs/1902.10152'}
+# - references: [2019MNRAS.487.1844M]
 # schema: astropy-2.0
 redshift M* log10phi* alpha
 5.0 -21.77 -3.55 -1.9

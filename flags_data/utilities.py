@@ -81,12 +81,19 @@ def simple_fig(fig_size = 3.5):
 
 
 labels = {}
-labels['Mstar'] = 'M_{\star}'
-# labels[''] = 'M_{\star}'
+labels['Mstar'] = r'M_{\star}'
+labels['LUV'] = r'L_{FUV}'
+labels['SFR'] = 'SFR'
+
+tunits = {}
+tunits['Mstar'] = r'M_{\odot}'
+tunits['LUV'] = r'erg\ s^{-1}\ Hz^{-1}'
+tunits['SFR'] = r'M_{\odot}\ yr^{-1}'
 
 def label(x, x_unit):
 
-    print(x, x_unit)
+    print(x_unit)
+
     if isinstance(x_unit, units.DexUnit):
         u = rf'{x_unit.physical_unit:latex}'
         x_ = x[5:] # remove log10
@@ -99,3 +106,7 @@ def label(x, x_unit):
             u = ''
         if x in labels.keys(): x = labels[x]
         return rf'$\rm {x}{u.replace("$", "")})$'
+
+
+def label_(x):
+    return rf'$\rm log_{{10}}({labels[x]}/{tunits[x]})$'

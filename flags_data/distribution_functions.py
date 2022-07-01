@@ -23,7 +23,7 @@ from matplotlib.lines import Line2D
 import matplotlib as mpl
 import cmasher as cmr # provides wider range of cmaps, see https://cmasher.readthedocs.io
 
-from .utilities import log10Lnu_to_M, M_to_log10Lnu, bin_centres, simple_fig, label
+from .utilities import log10Lnu_to_M, M_to_log10Lnu, bin_centres, simple_fig, label, label_
 
 
 this_dir = os.path.dirname(os.path.abspath(__file__))
@@ -32,8 +32,16 @@ import ads
 
 ads.config.token = 'qm1AtsIgKukl0jqMjYaEa2LHK9am6gQka6opvce1'
 
+data_dir = f'{this_dir}/data/DistributionFunctions'
 
-def read(dataset, data_dir = f'{this_dir}/data/DistributionFunctions', interp_scheme = 'linear'):
+x_ranges = {}
+x_ranges['LUV'] = [27.51, 30.]
+x_ranges['SFR'] = [-0.5, 3.]
+x_ranges['Mstar'] = [7.5, 11.5]
+
+
+
+def read(dataset, data_dir = data_dir, interp_scheme = 'linear'):
 
     t = Table.read(f'{data_dir}/{dataset}.ecsv')
 
@@ -54,7 +62,7 @@ def read(dataset, data_dir = f'{this_dir}/data/DistributionFunctions', interp_sc
 # def list_datasets(datasets, data_dir = f'{this_dir}/data/DistributionFunctions'):
 #     return list(map(lambda x: x.replace('.ecsv', ''), os.listdir(f'{data_dir}/{datasets}')))
 
-def list_datasets(datasets, data_dir = f'{this_dir}/data/DistributionFunctions'):
+def list_datasets(datasets, data_dir = data_dir):
     l = [os.path.join(dp, f.split('.')[0]) for dp, dn, fn in os.walk(os.path.expanduser(f'{data_dir}/{datasets}')) for f in fn if f.endswith('.ecsv')]
     l = [l_[len(data_dir)+1:] for l_ in l]
     return l
@@ -65,45 +73,66 @@ def list_datasets(datasets, data_dir = f'{this_dir}/data/DistributionFunctions')
 
 class DatasetInfo:
 
-    def __init__(self, datasets = 'LUV', data_dir = f'{this_dir}/data/DistributionFunctions'):
+    def __init__(self, datasets = 'LUV', data_dir = data_dir):
 
         self.data_dir = data_dir
 
         self.df_type = datasets.split('/')[0]
 
         self.datasets = datasets
-        self.models = list_datasets(datasets)
+        self.dataset_list = list_datasets(datasets)
 
-        self.short_models = [model.split('/')[-1]+'/'+model.split('/')[-2] for model in self.models]
+        self.studies = list(set([x.split('/')[-1] for x in self.dataset_list]))
+        self.type_studies = list(set(['/'.join(x.split('/')[-2:]) for x in self.dataset_list]))
+        self.studies_type = list(set(['/'.join(x.split('/')[-2:][::-1]) for x in self.dataset_list])) # useful for sorting
+        self.d_from_st = dict(zip(self.studies_type, self.dataset_list))
 
-        self.long_from_short = dict(zip(self.short_models, self.models))
+        # --- read all datasets
+        self.dataset = {}
+        self.redshifts = {}
+        self.log10X_range = {}
+        self.names = {}
+        for dataset_name in self.dataset_list:
+
+            m = read(dataset_name, data_dir = data_dir)
+
+            self.dataset[dataset_name] = m
+
+            # --- get dataset name
+            self.names[dataset_name] = m.name
+
+            # --- get redshifts of each models
+            self.redshifts[dataset_name] = m.redshifts
+
+            # --- get log10X range of binned models
+            if dataset_name.split('/')[-1] == 'binned':
+                self.log10X_range[dataset_name] = [np.min(m.log10X[m.redshifts[0]]), np.max(m.log10X[m.redshifts[0]])]
 
 
     def get_info(self):
+        for dataset_name in self.dataset_list:
+            if dataset_name.split('/')[-1] == 'binned':
+                print(dataset_name, self.redshifts[dataset_name], self.log10X_range[dataset_name])
+            if dataset_name.split('/')[-1] == 'schechter':
+                print(dataset_name, self.redshifts[dataset_name])
 
-        for model_name in self.models:
-
-            print(model_name)
-            m = read(model_name, data_dir = data_dir)
-
-            if m.df_type == 'schechter':
-                print(model_name, m.redshifts)
-
-            if m.df_type == 'binned':
-                log10_limits = [np.min(m.log10X[m.redshifts[0]]), np.max(m.log10X[m.redshifts[0]])]
-                print(model_name, m.redshifts, log10_limits)
-
-
+    def get_datasets_at_z(self, z, z_tolerance = 0.2):
+        datasets_z = []
+        for dataset_name in self.dataset_list:
+            for z_ in self.redshifts[dataset_name]:
+                if np.fabs(z-z_)<z_tolerance:
+                    datasets_z.append((dataset_name, z_))
+        return(datasets_z)
 
     def plot_redshift_range(self, cmap = 'cmr.guppy'):
 
 
-        n_models = len(self.models)
+        n_datasets = len(self.dataset_list)
 
         xtotal_ = 7.  # in "
 
         bottom_ = 0.35  # in "
-        height_ = 0.25 * n_models  # in "
+        height_ = 0.15 * n_datasets  # in "
         top_ = 0.1  # in "
         ytotal_ = bottom_ + height_ + top_  # in "
 
@@ -118,13 +147,13 @@ class DatasetInfo:
         ax = fig.add_axes((left, bottom, width, height))
 
 
-        colors = cmr.take_cmap_colors(cmap, len(self.models))
+        colors = cmr.take_cmap_colors(cmap, n_datasets)
 
         z_min, z_extent, labels = [], [], []
 
-        for i, short_model_name in enumerate(sorted(self.short_models)):
+        for i, study_type in enumerate(sorted(self.studies_type)):
 
-            m = read(self.long_from_short[short_model_name], data_dir = self.data_dir)
+            m = read(self.d_from_st[study_type], data_dir = self.data_dir)
 
             label = rf'$\rm \mathbf{{ {m.name} }}\ [{m.df_type}]$'
             ax.text(3.3, i, label, fontsize = 8, ha='right', va = 'center')
@@ -139,23 +168,25 @@ class DatasetInfo:
             z_min.append(np.min(m.redshifts))
             z_extent.append(np.max(m.redshifts)-np.min(m.redshifts))
 
-        ax.barh(np.arange(len(self.models)), z_extent, left = z_min, color = colors, align='center')
+        ax.barh(np.arange(n_datasets), z_extent, left = z_min, color = colors, align='center')
 
         ax.set_xlim([3.5, 15.5])
-        ax.set_ylim([-0.75, n_models - 0.25])
+        ax.set_ylim([-0.75, n_datasets - 0.25])
         ax.set_yticks([])
         ax.set_xlabel(r'$\rm z$')
 
         return fig, ax
 
-
     def plot_redshift_log10X_range(self, cmap = 'cmr.guppy'):
+
+        n_datasets = len(self.dataset_list)
 
         fig, ax = simple_fig(fig_size = (4.5, 3.5))
 
-        for model_name, color in zip(self.models, cmr.take_cmap_colors(cmap, len(self.models))):
+        colors = cmr.take_cmap_colors(cmap, n_datasets)
+        for i, (study_type, color) in enumerate(zip(sorted(self.studies_type), colors)):
 
-            m = read(model_name, data_dir = self.data_dir)
+            m = read(self.d_from_st[study_type], data_dir = self.data_dir)
 
             if m.df_type == 'binned':
 
@@ -173,18 +204,75 @@ class DatasetInfo:
                 ax.text(x[0] + 0.1, y1[0]+0.4, rf'$\rm {m.name}$', fontsize = 10,  rotation = 90., color = color)
 
         ax.set_xlim([3.5, 15.5])
-        ax.set_ylabel(label(m.log10x, m.log10x_unit))
+        # ax.set_ylim(x_ranges[self.df_type])
+        # ax.set_ylabel(label(m.log10x, m.log10x_unit))
+        ax.set_ylabel(label_(self.df_type))
         ax.set_xlabel(r'$\rm z$')
 
         return fig, ax
 
 
+    def plot_dfs(self, redshifts = np.arange(5, 14, 1), cmap = 'cmr.guppy', x_range = None, y_range = [-6.99, -0.51]):
+
+        if not x_range:
+            x_range = x_ranges[self.df_type]
+
+
+        fig = plt.figure(figsize = (7,5))
+
+        left = 0.1
+        right = 0.75
+        bottom = 0.1
+        top = 0.95
+
+        gs = fig.add_gridspec(3, 3, left = left, bottom = bottom, right = right, top = top, hspace=0, wspace=0)
+        axes = gs.subplots(sharex=True, sharey=True)
+
+
+        colors = dict(zip(self.dataset_list, cmr.take_cmap_colors(cmap, len(self.dataset_list))))
+        lss = dict(zip(self.dataset_list, ['-','--','-.',':']*5))
+
+        # --- create legend
+        lax = fig.add_axes([right, bottom, 0.3, top-bottom])
+        lax.axis('off')
+        handles = [Line2D([0], [0], color = colors[ds], lw=2, ls=lss[ds], label=self.names[ds]) for ds in self.dataset_list]
+        lax.legend(handles=handles, loc='center left', title = self.datasets, fontsize = 8)
+
+        for ax, z in zip(axes.flatten(), redshifts):
+
+            ax.label_outer()
+
+            ax.text(0.05, 0.9, rf'$\rm z={z:.0f}$', color = '0.3', transform = ax.transAxes)
+
+            dataset_z = self.get_datasets_at_z(z, z_tolerance = 0.1) # --- get list of datasets at this redshift
+
+
+            for dataset_name, z in dataset_z:
+
+                dataset = self.dataset[dataset_name]
+
+                color = colors[dataset_name]
+                ls  = lss[dataset_name]
+
+                if dataset.df_type == 'binned':
+                    ax.plot(dataset.log10X[z], dataset.log10phi_dex[z], color = color, label = rf'$\rm {dataset.name} $', ls = ls)
+
+                if dataset.df_type == 'schechter':
+                    log10L = np.arange(*x_range, 0.01)
+                    ax.plot(bin_centres(log10L), dataset.L(z).log10phi_binned(log10L), color = color, label = rf'$\rm {dataset.name} $', ls = ls)
 
 
 
+            ax.set_xlim(x_range)
+            ax.set_ylim(y_range)
+            ax.set_xticks(np.arange(*np.round(x_range, 0), 1))
 
+            # ax.legend(fontsize = 8)
 
+        axes[2,1].set_xlabel(label_(self.df_type), fontsize = 10)
+        axes[1,0].set_ylabel(r'$\rm \log_{10}(\phi/Mpc^{-3}\ dex^{-1}) $', fontsize = 10)
 
+        return fig, axes
 
 
 
@@ -275,14 +363,6 @@ class Schechter:
 
             return np.log10(self.phi_binned(log10L))
 
-
-
-
-
-
-
-
-
 class Binned:
 
     def __init__(self, t):
@@ -306,9 +386,6 @@ class Binned:
         else:
             self.log10x = self.x
             self.log10x_unit = self.x_unit
-
-        print(self.name, self.log10x_unit)
-
 
         # original y quantity
         self.y = t.meta['y']
@@ -356,43 +433,42 @@ class Binned:
             else:
                 print('WARNING [unit]')
 
+class Plots:
+
+    def df(dataset_z_, cmap = 'cmr.guppy', x_range = [27., 30.], y_range = [-7., 1.], data_dir = data_dir):
+
+        if type(dataset_z_) is not list: dataset_z_ = [dataset_z_]
+
+        df_type = dataset_z_[0][0].split('/')[0]
 
 
 
 
-
-
-
-class plots:
-
-    def lf(models = None, redshifts = None, cmap = 'cmr.guppy', lum_type = 'Lnu', x_range = [27., 30.], y_range = [-7., 1.]):
 
         fig, ax = simple_fig()
 
-        colors = cmr.take_cmap_colors(cmap, len(redshifts))
+        colors = cmr.take_cmap_colors(cmap, len(dataset_z_))
+        lss = ['-','--','-.',':']*5
 
-        for m in models:
+        for dataset_z, color, ls in zip(dataset_z_, colors, lss):
 
-            for z, color in zip(redshifts, colors):
+            dataset, z = dataset_z
 
-                if m.df_type == 'Binned':
-                    ax.step(m.log10L[z], m.log10phi[z], where = 'mid', color = color, label = rf'$\rm z={z} $')
+            m = read(dataset, data_dir = data_dir)
 
-                if m.df_type == 'Schechter':
-                    log10L = np.arange(*x_range, 0.1)
-                    ax.plot(bin_centres(log10L), m.L(z).log10phi_binned(log10L), color = color)
+            if m.df_type == 'binned':
+                ax.plot(m.log10X[z], m.log10phi_dex[z], color = color, label = rf'$\rm {m.name} $', ls = ls)
+
+            if m.df_type == 'schechter':
+                log10L = np.arange(*x_range, 0.01)
+                ax.plot(bin_centres(log10L), m.L(z).log10phi_binned(log10L), color = color, label = rf'$\rm {m.name} $', ls = ls)
 
 
         ax.legend(fontsize = 8)
         ax.set_xlim(x_range)
         ax.set_ylim(y_range)
 
-        if lum_type == 'Lnu':
-            ax.set_xlabel(r'$\rm \log_{10}(L/erg\ s^{-1}\ Hz^{-1}) $')
-            ax.set_ylabel(r'$\rm \log_{10}(\phi/Mpc^{-3}\ dex^{-1}) $')
-
-        if lum_type == 'M':
-            ax.set_xlabel(r'$\rm \log_{10}(M) $')
-            ax.set_ylabel(r'$\rm \log_{10}(\phi/Mpc^{-3}\ mag^{-1}) $')
+        ax.set_xlabel(label_(df_type))
+        ax.set_ylabel(r'$\rm \log_{10}(\phi/Mpc^{-3}\ dex^{-1}) $')
 
         return fig, ax

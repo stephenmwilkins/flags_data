@@ -1,5 +1,7 @@
 
 # Galaxy Stellar Mass Function
 
-![This is an image](../figs/MstarDF_redshift_range.png)
-![This is an image](../figs/MstarDF_redshift_log10X_range.png)
+![](../figs/DF/Mstar/z_r.png)
+![](../figs/DF/Mstar/z_log10x_r.png)
+![](../figs/DF/Mstar/models-binned.png)
+<!-- ![](../figs/DF/Mstar/models-schechter.png) -->

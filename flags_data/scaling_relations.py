@@ -30,7 +30,7 @@ data_dir = f'{this_dir}/data/ScalingRelations'
 
 class read:
 
-    def __init__(self, dataset, data_dir = f'{this_dir}/data/ScalingRelations'):
+    def __init__(self, dataset, data_dir = data_dir):
 
         t = Table.read(f'{data_dir}/{dataset}.ecsv')
         self.t = t
