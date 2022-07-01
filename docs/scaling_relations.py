@@ -53,6 +53,8 @@ if __name__ == "__main__":
 
                 # --- add references
 
+                lines.append(f'| dataset name | references |\n')
+                lines.append(f'| --- | --- |\n')
                 for dset_name, dset in ds.dataset.items():
 
                     if dset.references:
