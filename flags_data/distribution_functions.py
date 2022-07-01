@@ -81,6 +81,7 @@ class DatasetInfo:
 
         self.datasets = datasets
         self.dataset_list = list_datasets(datasets)
+        self.n = len(self.dataset_list)
 
         self.studies = list(set([x.split('/')[-1] for x in self.dataset_list]))
         self.type_studies = list(set(['/'.join(x.split('/')[-2:]) for x in self.dataset_list]))
@@ -127,12 +128,10 @@ class DatasetInfo:
     def plot_redshift_range(self, cmap = 'cmr.guppy'):
 
 
-        n_datasets = len(self.dataset_list)
-
         xtotal_ = 7.  # in "
 
         bottom_ = 0.35  # in "
-        height_ = 0.15 * n_datasets  # in "
+        height_ = 0.15 * self.n  # in "
         top_ = 0.1  # in "
         ytotal_ = bottom_ + height_ + top_  # in "
 
@@ -147,7 +146,7 @@ class DatasetInfo:
         ax = fig.add_axes((left, bottom, width, height))
 
 
-        colors = cmr.take_cmap_colors(cmap, n_datasets)
+        colors = cmr.take_cmap_colors(cmap, self.n)
 
         z_min, z_extent, labels = [], [], []
 
@@ -168,10 +167,10 @@ class DatasetInfo:
             z_min.append(np.min(m.redshifts))
             z_extent.append(np.max(m.redshifts)-np.min(m.redshifts))
 
-        ax.barh(np.arange(n_datasets), z_extent, left = z_min, color = colors, align='center')
+        ax.barh(np.arange(self.n), z_extent, left = z_min, color = colors, align='center')
 
         ax.set_xlim([3.5, 15.5])
-        ax.set_ylim([-0.75, n_datasets - 0.25])
+        ax.set_ylim([-0.75, self.n - 0.25])
         ax.set_yticks([])
         ax.set_xlabel(r'$\rm z$')
 

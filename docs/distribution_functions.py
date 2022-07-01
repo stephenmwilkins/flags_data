@@ -31,12 +31,12 @@ def make_range_plots(df_type):
     # --- create a redshift range plot of available models/observations
     dataset_info = df.DatasetInfo(datasets = df_type)
     fig, ax = dataset_info.plot_redshift_range()
-    fig.savefig(f'figs/DF/{df_type}/z_r.png')
+    fig.savefig(f'figs/df/{df_type}/z_r.png')
 
     # --- create a redshift luminosity plot of available models/observations
     dataset_info = df.DatasetInfo(datasets = f'{df_type}/models/binned')
     fig, ax = dataset_info.plot_redshift_log10X_range()
-    fig.savefig(f'figs/DF/{df_type}/z_log10x_r.png')
+    fig.savefig(f'figs/df/{df_type}/z_log10x_r.png')
 
 
 def make_df_plots(datasets):
@@ -45,7 +45,7 @@ def make_df_plots(datasets):
 
     # --- plot a list of models, z
     fig, ax = di.plot_dfs()
-    fig.savefig(f"figs/DF/{df_type}/{'-'.join(datasets.split('/')[1:])}.png")
+    fig.savefig(f"figs/df/{df_type}/{'-'.join(datasets.split('/')[1:])}.png")
 
 
 if __name__ == "__main__":

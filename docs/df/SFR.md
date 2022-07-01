@@ -1,7 +1,7 @@
 
 # SFR Distribution Function
 
-![](../figs/DF/SFR/z_r.png)
-![](../figs/DF/SFR/z_log10x_r.png)
-![](../figs/DF/SFR/models-binned.png)
+![](../figs/df/SFR/z_r.png)
+![](../figs/df/SFR/z_log10x_r.png)
+![](../figs/df/SFR/models-binned.png)
 <!-- ![](../figs/DF/SFR/models-schechter.png) -->

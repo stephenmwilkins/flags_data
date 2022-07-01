@@ -9,50 +9,45 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 from flags_data.utilities import bin_centres
 import flags_data.scaling_relations as sr
 
+import flare.plt as fplt
 
 
 
-# --- list available relations
-print(sr.list_relations())
+if __name__ == "__main__":
 
-# --- get lists of the available datasets
-print(sr.list_datasets())
-print(sr.list_datasets('Mstar/sSFR'))
+    # --- list available relations
+    relations = sr.list_relations()
 
-# --- print dataset info for collections of datasets
-dataset_info = sr.DatasetInfo() # all relations and models
-for datasets in ['Mstar', 'Mstar/sSFR', 'Mstar/sSFR/models']:
-    print('-'*50)
-    dataset_info = sr.DatasetInfo(datasets = datasets)
+    # --- create a grid of relations and models
+    # di = sr.Datasets()
+    # fig, ax = di.plot_matrix()
+    # fig.savefig(f'figs/sr/matrix.png')
 
+    for x, Y in relations.items():
+        for y in Y:
+            r = f'{x}/{y}'
+            # os.mkdir(f'figs/sr/{x}-{y}')
+            print(r, sr.list_datasets(f'{x}/{y}'))
 
-# --- create a grid of relations and models
-# dataset_info = sr.DatasetInfo()
-# fig, ax = dataset_info.plot_matrix()
-# # plt.show()
-# fig.savefig(f'figs/matrix.pdf')
+            ds = sr.Datasets(datasets = r)
 
+            if ds.n > 0:
 
-# --- create a redshift range plot of available models/observations
-# relation = 'Mstar/sSFR'
-# dataset_info = sr.DatasetInfo(datasets = relation)
-# fig, ax = dataset_info.plot_redshift_range()
-# # plt.show()
-# fig.savefig(f'figs/{relation.replace("/","_")}_redshift_range.pdf')
-#
-#
-# fig, ax = dataset_info.plot_redshift_X_range() # --- create a redshift luminosity plot of available models/observations
-# # plt.show()
-# fig.savefig(f'figs/{relation.replace("/","_")}_redshift_X_range.pdf')
+                # fig, ax = ds.plot_redshift_range()
+                # fig.savefig(f'figs/sr/{x}-{y}/z_r.png')
+                #
+                # fig, ax = ds.plot_redshift_X_range()
+                # fig.savefig(f'figs/sr/{x}-{y}/z_X_r.png')
+                #
+                # fig, ax = ds.plot_srs()
+                # fig.savefig(f'figs/sr/{x}-{y}/sr.png')
 
+                # --- make README
 
-# --- open a specific dataset and plot it
-dataset = 'Mstar/sSFR/models/flares'
+                lines = []
+                lines.append(f'# {x}-{y}\n')
+                lines.append(f'![](../figs/sr/{x}-{y}/z_r.png)\n')
+                lines.append(f'![](../figs/sr/{x}-{y}/z_X_r.png)\n')
+                lines.append(f'![](../figs/sr/{x}-{y}/sr.png)\n')
 
-d = sr.read(dataset)
-fig, ax = d.plot_single_z(5.0)
-plt.show()
-
-d = sr.read(dataset)
-fig, ax = d.plot_z_evo()
-plt.show()
+                f = open(f'sr/{x}-{y}.md','w+').writelines(lines)
