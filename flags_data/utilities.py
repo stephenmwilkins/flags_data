@@ -91,21 +91,25 @@ tunits['LUV'] = r'erg\ s^{-1}\ Hz^{-1}'
 tunits['SFR'] = r'M_{\odot}\ yr^{-1}'
 
 def label(x, x_unit):
-
-    print(x_unit)
-
     if isinstance(x_unit, units.DexUnit):
         u = rf'{x_unit.physical_unit:latex}'
         x_ = x[5:] # remove log10
+        x_ = x
         if x_ in labels.keys(): x_ = labels[x_]
-        return rf'$\rm log_{{10}}({x_}/{u.replace("$", "")})$'
+
+        l = rf'$\rm log_{{10}}({x_}/{u.replace("$", "")})$'
+
     else:
         if x_unit:
             u = rf'/{x_unit:latex}'
         else:
             u = ''
         if x in labels.keys(): x = labels[x]
-        return rf'$\rm {x}{u.replace("$", "")})$'
+        l = rf'$\rm {x}{u.replace("$", "")})$'
+
+    print(x, x_unit, l)
+    return l
+
 
 
 def label_(x):

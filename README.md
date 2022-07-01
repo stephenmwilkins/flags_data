@@ -14,11 +14,11 @@ Model predictions and observational constraints in the First Light And Reionisat
 
 <!-- - #### [$\rm M_{\rm tot}\ -\ M_{\star}$](docs/sr/Mstar-SFR.md) -->
 
-- #### [$\rm M_{\star}\ -\ SFR$](docs/sr/Mstar-SFR.md)
-- #### [$\rm M_{\star}\ -\ sSFR$](docs/sr/Mstar-sSFR.md)
-- #### [$\rm M_{\star}\ -\ age$](docs/sr/Mstar-age.md)
-- #### [$\rm M_{\star}\ -\ Z_{\star}$](docs/sr/Mstar-Zstar.md)
-- #### [$\rm M_{\star}\ -\ Z_{gas}$](docs/sr/Mstar-Zgas.md)
+- #### [Mstar - SFR](docs/sr/Mstar-SFR.md)
+- #### [Mstar - sSFR](docs/sr/Mstar-sSFR.md)
+- #### [Mstar - age](docs/sr/Mstar-age.md)
+- #### [Mstar - Zstar](docs/sr/Mstar-Zstar.md)
+- #### [Mstar - Zgas](docs/sr/Mstar-Zgas.md)
 <!-- - #### [$\rm M_{\star}\ -\ r_{0.5,\star}$](docs/sr/Mstar-SFR.md)
 - #### [$\rm M_{\star}\ -\ L_{UV}$](docs/sr/Mstar-SFR.md) -->
 

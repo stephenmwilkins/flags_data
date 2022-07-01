@@ -33,21 +33,21 @@ if __name__ == "__main__":
 
             if ds.n > 0:
 
-                # fig, ax = ds.plot_redshift_range()
-                # fig.savefig(f'figs/sr/{x}-{y}/z_r.png')
-                #
-                # fig, ax = ds.plot_redshift_X_range()
-                # fig.savefig(f'figs/sr/{x}-{y}/z_X_r.png')
-                #
-                # fig, ax = ds.plot_srs()
-                # fig.savefig(f'figs/sr/{x}-{y}/sr.png')
+                fig, ax = ds.plot_redshift_range()
+                fig.savefig(f'figs/sr/{x}-{y}/z_r.png')
+
+                fig, ax = ds.plot_redshift_X_range()
+                fig.savefig(f'figs/sr/{x}-{y}/z_X_r.png')
+
+                fig, ax = ds.plot_srs()
+                fig.savefig(f'figs/sr/{x}-{y}/sr.png')
 
                 # --- make README
 
-                lines = []
-                lines.append(f'# {x}-{y}\n')
-                lines.append(f'![](../figs/sr/{x}-{y}/z_r.png)\n')
-                lines.append(f'![](../figs/sr/{x}-{y}/z_X_r.png)\n')
-                lines.append(f'![](../figs/sr/{x}-{y}/sr.png)\n')
-
-                f = open(f'sr/{x}-{y}.md','w+').writelines(lines)
+                # lines = []
+                # lines.append(f'# {x}-{y}\n')
+                # lines.append(f'![](../figs/sr/{x}-{y}/z_r.png)\n')
+                # lines.append(f'![](../figs/sr/{x}-{y}/z_X_r.png)\n')
+                # lines.append(f'![](../figs/sr/{x}-{y}/sr.png)\n')
+                #
+                # f = open(f'sr/{x}-{y}.md','w+').writelines(lines)
