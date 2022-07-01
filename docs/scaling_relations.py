@@ -11,6 +11,9 @@ import flags_data.scaling_relations as sr
 
 import flare.plt as fplt
 
+import ads
+
+ads.config.token = 'qm1AtsIgKukl0jqMjYaEa2LHK9am6gQka6opvce1'
 
 
 if __name__ == "__main__":
@@ -33,21 +36,35 @@ if __name__ == "__main__":
 
             if ds.n > 0:
 
-                fig, ax = ds.plot_redshift_range()
-                fig.savefig(f'figs/sr/{x}-{y}/z_r.png')
-
-                fig, ax = ds.plot_redshift_X_range()
-                fig.savefig(f'figs/sr/{x}-{y}/z_X_r.png')
-
-                fig, ax = ds.plot_srs()
-                fig.savefig(f'figs/sr/{x}-{y}/sr.png')
+                # fig, ax = ds.plot_redshift_range()
+                # fig.savefig(f'figs/sr/{x}-{y}/z_r.png')
+                #
+                # fig, ax = ds.plot_redshift_X_range()
+                # fig.savefig(f'figs/sr/{x}-{y}/z_X_r.png')
+                #
+                # fig, ax = ds.plot_srs()
+                # fig.savefig(f'figs/sr/{x}-{y}/sr.png')
 
                 # --- make README
 
-                # lines = []
-                # lines.append(f'# {x}-{y}\n')
-                # lines.append(f'![](../figs/sr/{x}-{y}/z_r.png)\n')
-                # lines.append(f'![](../figs/sr/{x}-{y}/z_X_r.png)\n')
-                # lines.append(f'![](../figs/sr/{x}-{y}/sr.png)\n')
-                #
-                # f = open(f'sr/{x}-{y}.md','w+').writelines(lines)
+                lines = []
+                lines.append(f'# {x}-{y}\n')
+                lines.append(f'\n')
+
+                # --- add references
+
+                for dset_name, dset in ds.dataset.items():
+
+                    if dset.references:
+                        articles = [list(ads.SearchQuery(bibcode=bibcode))[0] for bibcode in dset.references]
+                        refs = [f"{article.first_author.split(',')[0]}+{article.year}"  for article in articles]
+                        links = [f'[{ref}](https://ui.adsabs.harvard.edu/abs/{bibcode}/abstract)' for ref, bibcode in zip(refs, dset.references)]
+                        lines.append(f'| {dset.name} | {", ".join(links)} |\n')
+
+
+                lines.append('\n')
+                lines.append(f'![](../figs/sr/{x}-{y}/z_r.png)\n')
+                lines.append(f'![](../figs/sr/{x}-{y}/z_X_r.png)\n')
+                lines.append(f'![](../figs/sr/{x}-{y}/sr.png)\n')
+
+                f = open(f'sr/{x}-{y}.md','w+').writelines(lines)

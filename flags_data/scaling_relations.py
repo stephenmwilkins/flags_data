@@ -19,9 +19,7 @@ from .utilities import log10Lnu_to_M, M_to_log10Lnu, bin_centres, simple_fig, la
 
 this_dir = os.path.dirname(os.path.abspath(__file__))
 
-import ads
 
-ads.config.token = 'qm1AtsIgKukl0jqMjYaEa2LHK9am6gQka6opvce1'
 
 data_dir = f'{this_dir}/data/ScalingRelations'
 
@@ -254,6 +252,9 @@ class Datasets:
             # --- get log10X range of binned models
             if dataset_name.split('/')[-1] == 'binned':
                 self.log10X_range[dataset_name] = [np.min(ds.X[ds.redshifts[0]]), np.max(ds.X[ds.redshifts[0]])]
+
+
+
 
 
 
