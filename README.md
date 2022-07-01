@@ -4,37 +4,25 @@ Model predictions and observational constraints in the First Light And Reionisat
 
 ## Distribution Functions
 
-### UV Luminosity Function
+- ### [UV Luminosity Function](docs/df/LUV.md)
 
-![This is an image](docs/figs/LUVDF_redshift_range.png)
-![This is an image](docs/figs/LUVDF_redshift_log10X_range.png)
+- ### [Galaxy Stellar Mass Function](docs/df/Mstar.md)
 
-
-### [Galaxy Stellar Mass Function](docs/df/Mstar.md)
-
-
-### SFR Distribution Function
-
-![This is an image](docs/figs/SFRDF_redshift_range.png)
-![This is an image](docs/figs/SFRDF_redshift_log10X_range.png)
+- ### [SFR Distribution Function](docs/df/SFR.md)
 
 ## Scaling Relations
 
+- #### $\rm M_{\rm tot}\ -\ M_{\star}$
 
+- #### $\rm M_{\star}\ -\ SFR$
+- #### $\rm M_{\star}\ -\ sSFR$
+- #### $\rm M_{\star}\ -\ age$
+- #### $\rm M_{\star}\ -\ Z_{\star}$
+- #### $\rm M_{\star}\ -\ Z_{gas}$
+- #### $\rm M_{\star}\ -\ r_{0.5,\star}$
+- #### $\rm M_{\star}\ -\ L_{UV}$
 
-### $M_{\rm tot}$
+- #### $\rm L_{UV}\ -\ \beta$
+- #### $\rm L_{UV}\ -\ r_{0.5,UV}$
+- #### $\rm L_{UV}\ -\ EW(OIII+H\beta)$
 
-- $M_{\star}$
-
-### $M_{\star}$
-
-- SFR
-- sSFR
-- $r_{0.5, \star}$
-- age
-- $Z_{\star}$
-- $Z_{\rm gas}$
-
-### $L_{\rm UV}$
-
-- $\beta$
