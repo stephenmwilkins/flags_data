@@ -1,6 +1,8 @@
 # First Light and Assembly of Galaxies (FLAGS) comparison dataset
-Model predictions and observational constraints in the First Light And Reionisation Epoch
 
+This module contains model predictions and observational constraints for various distribution functions and scaling relations in the First Light And Reionisation Epoch. Datasets are stored using the [astropy ecsv](https://docs.astropy.org/en/stable/api/astropy.io.ascii.Ecsv.html) format. In addition there are various classes and functions to aid in the analysis, alongside a set of examples.
+
+If you are interested in contributing, or have noticed a mistake, please feel free to raise a [issue](https://github.com/stephenmwilkins/flags_data/issues) or email me.
 
 ## Distribution Functions
 
@@ -25,3 +27,5 @@ Model predictions and observational constraints in the First Light And Reionisat
 <!-- - #### [$\rm L_{UV}\ -\ \beta$](docs/sr/Mstar-SFR.md)
 - #### [$\rm L_{UV}\ -\ r_{0.5,UV}$](docs/sr/Mstar-SFR.md)
 - #### [$\rm L_{UV}\ -\ EW(OIII+H\beta)$](docs/sr/Mstar-SFR.md) -->
+
+We also plan to add additional observational relations as soon as possible.
