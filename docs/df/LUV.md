@@ -16,6 +16,7 @@
 | CODA | [Ocvirk+2016](https://ui.adsabs.harvard.edu/abs/2016MNRAS.463.1462O/abstract) |
 | Universe Machine | [Behroozi+2020](https://ui.adsabs.harvard.edu/abs/2020MNRAS.499.5702B/abstract) |
 | DRAGONS | [Liu+2016](https://ui.adsabs.harvard.edu/abs/2016MNRAS.462..235L/abstract) |
+| Dephi | [Dayal+2014](https://ui.adsabs.harvard.edu/abs/2014MNRAS.445.2545D/abstract), [Dayal+2022](https://ui.adsabs.harvard.edu/abs/2022MNRAS.512..989D/abstract) |
 
 ![](../figs/df/LUV/z_r.png)
 ![](../figs/df/LUV/z_log10x_r.png)

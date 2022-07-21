@@ -82,13 +82,14 @@ def make_df_plots(datasets):
 
 if __name__ == "__main__":
 
-    for df_type in ['LUV','SFR','Mstar']: #,'Mstar','SFR'
+    # for df_type in ['LUV','SFR','Mstar']: #,'Mstar','SFR'
+    for df_type in ['LUV']: #,'Mstar','SFR'
 
         make_readme(df_type)
 
         # --- make range plots
-        # make_range_plots(df_type)
+        make_range_plots(df_type)
 
         # --- make DF plots
-        # make_df_plots(f'{df_type}/models/binned')
-        # if df_type in 'LUV': make_df_plots(f'{df_type}/models/schechter')
+        make_df_plots(f'{df_type}/models/binned')
+        if df_type in 'LUV': make_df_plots(f'{df_type}/models/schechter')
