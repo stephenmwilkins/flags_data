@@ -34,7 +34,7 @@ table = vstack(tables)
 
 table.meta['x'] = 'M'
 table.meta['y'] = 'log10phi'
-table.meta['name'] = 'Dephi'
+table.meta['name'] = 'Delphi'
 table.meta['redshifts'] = list(set(table['z']))
 table.meta['type'] = 'binned'
 table.meta['references'] = ['2014MNRAS.445.2545D', '2022MNRAS.512..989D']
