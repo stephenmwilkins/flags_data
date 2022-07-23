@@ -1,7 +1,7 @@
 # %ECSV 1.0
 # ---
 # datatype:
-# - {name: redshift, datatype: float64, description: redshift}
+# - {name: z, datatype: float64, description: redshift}
 # - {name: log10L, datatype: float64, description: log10(luminosity/erg/s/Hz)}
 # - {name: phi, datatype: float64, description: phi/Mpc^3/dex}
 # meta: !!omap
@@ -11,7 +11,7 @@
 # - {model type: hydro}
 # - {type: binned}
 # schema: astropy-2.0
-redshift log10L phi
+z log10L phi
 4.77 27.1 0.0299
 4.77 27.3 0.0239
 4.77 27.5 0.0277
