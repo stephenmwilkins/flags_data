@@ -6,7 +6,7 @@
 # - {name: log10phi*, datatype: float64, description: log10(number density/Mpc^-3)}
 # - {name: alpha, datatype: float64, description: faint end slope}
 # meta: !!omap
-# - {name: Mason+2015}
+# - {name: Mason et al. (2015)}
 # - {model type: semi-empirical}
 # - {type: Schechter}
 # - references: [2015ApJ...813...21M]
