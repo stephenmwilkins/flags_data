@@ -14,9 +14,10 @@
 | CROC | [Gnedin+2016](https://ui.adsabs.harvard.edu/abs/2016ApJ...825L..17G/abstract) |
 | FLARES | [Lovell+2021](https://ui.adsabs.harvard.edu/abs/2021MNRAS.500.2127L/abstract), [Vijayan+2021](https://ui.adsabs.harvard.edu/abs/2021MNRAS.501.3289V/abstract), [Wilkins+2022](https://ui.adsabs.harvard.edu/abs/2022arXiv220409431W/abstract) |
 | CODA | [Ocvirk+2016](https://ui.adsabs.harvard.edu/abs/2016MNRAS.463.1462O/abstract) |
+| Behroozi and Silk (2015) | [Behroozi+2015](https://ui.adsabs.harvard.edu/abs/2015ApJ...799...32B/abstract) |
 | Universe Machine | [Behroozi+2020](https://ui.adsabs.harvard.edu/abs/2020MNRAS.499.5702B/abstract) |
 | DRAGONS | [Liu+2016](https://ui.adsabs.harvard.edu/abs/2016MNRAS.462..235L/abstract) |
-| Dephi | [Dayal+2014](https://ui.adsabs.harvard.edu/abs/2014MNRAS.445.2545D/abstract), [Dayal+2022](https://ui.adsabs.harvard.edu/abs/2022MNRAS.512..989D/abstract) |
+| Delphi | [Dayal+2014](https://ui.adsabs.harvard.edu/abs/2014MNRAS.445.2545D/abstract), [Dayal+2022](https://ui.adsabs.harvard.edu/abs/2022MNRAS.512..989D/abstract) |
 
 ![](../figs/df/LUV/z_r.png)
 ![](../figs/df/LUV/z_log10x_r.png)
