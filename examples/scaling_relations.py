@@ -18,12 +18,19 @@ print(sr.list_relations())
 # --- get lists of the available datasets
 print(sr.list_datasets())
 print(sr.list_datasets('Mstar/sSFR'))
+print(sr.list_datasets('Mstar/SFR'))
+print(sr.list_datasets('Mstar/SFR/obs'))
 
 # --- print dataset info for collections of datasets
-dataset_info = sr.DatasetInfo() # all relations and models
-for datasets in ['Mstar', 'Mstar/sSFR', 'Mstar/sSFR/models']:
+
+for datasets in ['Mstar/sSFR', 'Mstar/sSFR/models']:
     print('-'*50)
-    dataset_info = sr.DatasetInfo(datasets = datasets)
+    dataset_info = sr.Datasets(datasets = datasets)
+
+
+d = sr.Datasets(datasets = 'Mstar/SFR/obs')
+
+print(d.dataset_list)
 
 
 # --- create a grid of relations and models

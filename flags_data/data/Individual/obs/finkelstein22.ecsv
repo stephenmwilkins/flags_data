@@ -1,0 +1,35 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: id, datatype: string}
+# - {name: z, datatype: float64}
+# - {name: z_err_low, datatype: float64}
+# - {name: z_err_upp, datatype: float64}
+# - {name: log10Mstar, unit: dex(solMass), datatype: float64}
+# - {name: log10Mstar_err_low, unit: dex, datatype: float64}
+# - {name: log10Mstar_err_upp, unit: dex, datatype: float64}
+# - {name: SFR, unit: solMass / yr, datatype: float64}
+# - {name: SFR_err_low, unit: solMass / yr, datatype: float64}
+# - {name: SFR_err_upp, unit: solMass / yr, datatype: float64}
+# - {name: log10sSFR, unit: dex(1 / Gyr), datatype: float64}
+# - {name: log10sSFR_err_low, unit: dex, datatype: float64}
+# - {name: log10sSFR_err_upp, unit: dex, datatype: float64}
+# - {name: age, unit: Myr, datatype: float64}
+# - {name: age_err_low, unit: Myr, datatype: float64}
+# - {name: age_err_upp, unit: Myr, datatype: float64}
+# - {name: A_V, unit: mag, datatype: float64}
+# - {name: A_V_err_low, unit: mag, datatype: float64}
+# - {name: A_V_err_upp, unit: mag, datatype: float64}
+# - {name: beta, datatype: float64}
+# - {name: beta_err_low, datatype: float64}
+# - {name: beta_err_upp, datatype: float64}
+# - {name: M_UV, unit: mag, datatype: float64}
+# - {name: M_UV_err_low, unit: mag, datatype: float64}
+# - {name: M_UV_err_upp, unit: mag, datatype: float64}
+# meta: !!omap
+# - {name: Finkelstein+2022}
+# - quantities: [log10Mstar, SFR, log10sSFR, age, A_V, beta, M_UV]
+# - references: []
+# schema: astropy-2.0
+id z z_err_low z_err_upp log10Mstar log10Mstar_err_low log10Mstar_err_upp SFR SFR_err_low SFR_err_upp log10sSFR log10sSFR_err_low log10sSFR_err_upp age age_err_low age_err_upp A_V A_V_err_low A_V_err_upp beta beta_err_low beta_err_upp M_UV M_UV_err_low M_UV_err_upp
+CEERS-z14-1 14.3 -1.1 0.4 8.45 -0.32 0.33 4.1 -3.5 4.2 -7.9 -0.9 0.7 16 -6 45 0.06 -0.04 0.23 -2.32 -0.2 0.11 -20.3 0.1 0.1

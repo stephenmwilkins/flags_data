@@ -59,6 +59,9 @@ class read:
         else:
             self.references = None
 
+        self.dataset_type = t.meta['dataset_type']
+
+
         self.x, self.y, self.om, self.study = dataset.split('/')
 
         # --- grab default units
@@ -79,6 +82,7 @@ class read:
         self.X = {}
         self.Y = {}
         if 'N' in t.colnames: self.N = {}
+
         for z in self.redshifts:
             s = (t['z'].data == z)
             self.X[z] = t[self._x].data[s]
@@ -152,60 +156,6 @@ def list_datasets(relation = '', data_dir = data_dir):
 
 
 
-# class Datasets:
-#
-#     def __init__(self, datasets = '', data_dir = f'{this_dir}/data/ScalingRelations'):
-#
-#         self.data_dir = data_dir
-#         self.datasets = datasets
-#         self.dataset_list = list_datasets(datasets)
-#         self.relations = list(set(['/'.join(x.split('/')[:-2]) for x in self.dataset_list]))
-#         self.type_studies = list(set(['/'.join(x.split('/')[-2:]) for x in self.dataset_list]))
-#         self.studies = list(set([x.split('/')[-1] for x in self.dataset_list]))
-#
-#         self.ts_from_s = dict(zip(self.studies, self.type_studies))
-#
-#         for dset in self.dataset_list:
-#
-#             m = read(dset, data_dir = data_dir)
-#
-#             log10_limits = [np.min(m.X[m.redshifts[0]]), np.max(m.X[m.redshifts[0]])]
-#
-#             print(dset, m.redshifts, log10_limits)
-#
-#
-#     def plot_matrix(self, cmap = 'cmr.horizon_r'):
-#
-#         fig = plt.figure(figsize = (5, 4.5))
-#
-#         left  = 0.4
-#         height = 0.8
-#         bottom = 0.15
-#         width = 0.55
-#
-#         ax = fig.add_axes((left, bottom, width, height))
-#
-#         M = np.zeros([len(self.relations), len(self.studies)])
-#
-#         study_name = {}
-#
-#         for i, study in enumerate(sorted(self.studies)):
-#             for j, relation in enumerate(self.relations):
-#                 dset = f'{relation}/{self.ts_from_s[study]}'
-#                 if dset in self.dataset_list:
-#                     m = read(dset, data_dir = self.data_dir)
-#                     study_name[study] = rf'$\rm \mathbf{{ {m.name} }}$'
-#                     M[j, i] = (i+1)/len(self.studies)
-#
-#         ax.imshow(M, cmap = cmap, origin = 'lower')
-#
-#         ax.set_yticks(np.arange(len(self.relations)), labels = self.relations)
-#         ax.set_xticks(np.arange(len(self.studies)), labels = [study_name[study] for study in sorted(self.studies)])
-#
-#         # ax.set_xlabel(r'$\rm z$')
-#
-#         return fig, ax
-
 
 
 
@@ -218,7 +168,7 @@ class Datasets:
         self.dataset_list = list_datasets(datasets)
         self.n = len(self.dataset_list)
         self.relation = '/'.join(datasets.split('/')[:2])
-
+        print(self.relation)
         self.x, self.y = self.relation.split('/')
         self.x_unit = default_units[self.x]
         self.y_unit = default_units[self.y]

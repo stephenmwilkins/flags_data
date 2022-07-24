@@ -7,9 +7,9 @@ import astropy.units as u
 
 
 
-indir = 'behroozi_silk_2015/lf_dust_avg'
+indir = 'behroozi_silk_2015'
 
-files = os.listdir(f'original_data/{indir}')
+files = os.listdir(f'original_data/{indir}/lf_dust_avg')
 
 files = sorted(files)
 

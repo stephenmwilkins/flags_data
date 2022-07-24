@@ -1,0 +1,31 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: id, datatype: string}
+# - {name: z, datatype: float64}
+# - {name: z_err_low, datatype: float64}
+# - {name: z_err_upp, datatype: float64}
+# - {name: log10Mstar, unit: dex(solMass), datatype: float64}
+# - {name: log10Mstar_err_low, unit: dex, datatype: float64}
+# - {name: log10Mstar_err_upp, unit: dex, datatype: float64}
+# - {name: SFR, unit: solMass / yr, datatype: float64}
+# - {name: SFR_err_low, unit: solMass / yr, datatype: float64}
+# - {name: SFR_err_upp, unit: solMass / yr, datatype: float64}
+# - {name: age, unit: Myr, datatype: float64}
+# - {name: age_err_low, unit: Myr, datatype: float64}
+# - {name: age_err_upp, unit: Myr, datatype: float64}
+# - {name: beta, datatype: float64}
+# - {name: beta_err_low, datatype: float64}
+# - {name: beta_err_upp, datatype: float64}
+# - {name: M_UV, unit: mag, datatype: float64}
+# - {name: M_UV_err_low, unit: mag, datatype: float64}
+# - {name: M_UV_err_upp, unit: mag, datatype: float64}
+# meta: !!omap
+# - {name: Naidu+2022}
+# - {info: Prospector fits}
+# - quantities: [log10Mstar, SFR, age, beta, M_UV]
+# - references: []
+# schema: astropy-2.0
+id z z_err_low z_err_upp log10Mstar log10Mstar_err_low log10Mstar_err_upp SFR SFR_err_low SFR_err_upp age age_err_low age_err_upp beta beta_err_low beta_err_upp M_UV M_UV_err_low M_UV_err_upp
+GL-z11 10.9 -0.4 0.5 9.4 -0.3 0.3 12 -4 9 111 -54 43 -2.1 -0.1 0.1 -21.0 0.1 0.1
+GL-z13 13.1 -0.7 0.8 9.0 -0.4 0.3 7 -3 4 71 -3 4 -2.3 -0.1 0.1 -20.7 0.1 0.1
