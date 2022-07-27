@@ -8,6 +8,7 @@
 # - {x: M}
 # - {y: phi}
 # - {name: Behroozi and Silk (2015)}
+# - {shortname: Behroozi+15}
 # - redshifts: [10.0, 12.5, 14.0, 15.0]
 # - {type: binned}
 # - references: [2015ApJ...799...32B]

@@ -61,12 +61,12 @@ def make_readme(df_type):
 def make_range_plots(df_type):
 
     # --- create a redshift range plot of available models/observations
-    dataset_info = df.DatasetInfo(datasets = df_type)
+    dataset_info = df.DatasetInfo(datasets = f'{df_type}/models')
     fig, ax = dataset_info.plot_redshift_range()
     fig.savefig(f'figs/df/{df_type}/z_r.png')
 
     # --- create a redshift luminosity plot of available models/observations
-    dataset_info = df.DatasetInfo(datasets = f'{df_type}/models/binned')
+    dataset_info = df.DatasetInfo(datasets = f'{df_type}/models')
     fig, ax = dataset_info.plot_redshift_log10X_range()
     fig.savefig(f'figs/df/{df_type}/z_log10x_r.png')
 
@@ -77,7 +77,7 @@ def make_df_plots(datasets):
 
     # --- plot a list of models, z
     fig, ax = di.plot_dfs()
-    fig.savefig(f"figs/df/{df_type}/{'-'.join(datasets.split('/')[1:])}.png")
+    fig.savefig(f"figs/df/{df_type}/{'-'.join(datasets.split('/'))}.png")
 
 
 if __name__ == "__main__":
@@ -85,11 +85,13 @@ if __name__ == "__main__":
     # for df_type in ['LUV','SFR','Mstar']: #,'Mstar','SFR'
     for df_type in ['LUV']: #,'Mstar','SFR'
 
-        make_readme(df_type)
+        # make_readme(df_type)
 
         # --- make range plots
-        make_range_plots(df_type)
+        # make_range_plots(df_type)
 
         # --- make DF plots
-        make_df_plots(f'{df_type}/models/binned')
-        if df_type in 'LUV': make_df_plots(f'{df_type}/models/schechter')
+        # make_df_plots(f'{df_type}/models/binned')
+        # if df_type in 'LUV': make_df_plots(f'{df_type}/models/schechter')
+
+        make_df_plots(f'{df_type}')

@@ -8,6 +8,12 @@ geo = 4.*np.pi*(100.*10.*3.0867*10**16)**2 # factor relating the L to M in cm^2
 log10geo = np.log10(geo)
 
 
+
+def mlabel(l):
+    l_ = l.replace(' ', '\ ')
+    return rf'$\rm {l}$'
+
+
 def fnu_to_m(fnu):
 
     return -2.5*np.log10(fnu/1E9) + 8.9 # -- assumes flux in nJy

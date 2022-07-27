@@ -1,0 +1,24 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: id, datatype: string}
+# - {name: field, datatype: string}
+# - {name: ra, unit: deg, datatype: float64}
+# - {name: dec, unit: deg, datatype: float64}
+# - {name: F444W, unit: mag, datatype: float64}
+# - {name: M_UV, unit: mag, datatype: float64}
+# - {name: z, datatype: float64}
+# meta: !!omap
+# - {name: Castellano et al. (2022)}
+# - {observatory: Webb}
+# - quantities: [M_UV]
+# - references: []
+# schema: astropy-2.0
+id field ra dec F444W M_UV z
+GHZ1 GLASS   3.511929   -30.371848    26.19   -21.0    10.740
+GHZ2 GLASS   3.498985   -30.324767    25.88   -22.3    12.30
+GHZ3 GLASS   3.528937   -30.363811    26.58   -20.84    11.1478
+GHZ4 GLASS   3.513738   -30.351552    27.85   -19.49    10.0814
+GHZ5 GLASS   3.494440   -30.307622    26.99   -19.98     9.4055
+GHZ6 GLASS   3.490391   -30.327159    28.14   -18.95     2.7504
+GHZ7 GLASS   3.479054   -30.314924    26.98   -19.67    9.9013

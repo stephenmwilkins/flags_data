@@ -1,0 +1,19 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: z, datatype: float64}
+# - {name: M, unit: mag, datatype: float64}
+# - {name: deltaM, unit: mag, datatype: float64}
+# - {name: log10phi, unit: dex(1 / (mag Mpc3)), datatype: float64}
+# - {name: log10phi_err_low, unit: dex, datatype: float64}
+# - {name: log10phi_err_upp, unit: dex, datatype: float64}
+# meta: !!omap
+# - {x: M}
+# - {y: log10phi}
+# - {name: Naidu et al. (2022)}
+# - {type: binned}
+# - redshifts: [11.5]
+# - references: [2022arXiv220712356D]
+# schema: astropy-2.0
+z M deltaM log10phi log10phi_err_low log10phi_err_upp
+11.5 -21 1.0 -5.05 0.45 0.37

@@ -2,10 +2,12 @@
 # ---
 # datatype:
 # - {name: z, datatype: float64, description: redshift}
-# - {name: log10L, datatype: float64, description: log10(luminosity/erg/s/Hz)}
-# - {name: phi, datatype: float64, description: phi/Mpc^3/dex}
+# - {name: log10L, datatype: float64, unit: dex(erg/s/Hz), description: log10(luminosity/erg/s/Hz)}
+# - {name: phi, datatype: float64, unit: 1/(Mpc^3 dex), description: phi/Mpc^3/dex}
 # meta: !!omap
-# - {name: 'FLARES\ [intrinsic]'}
+# - {name: 'FLARES'}
+# - {x: log10L}
+# - {y: phi}
 # - references: [2021MNRAS.500.2127L, 2021MNRAS.501.3289V, 2022arXiv220409431W]
 # - redshifts: [4.77, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0]
 # - {model type: hydro}

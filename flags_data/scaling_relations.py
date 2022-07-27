@@ -59,9 +59,6 @@ class read:
         else:
             self.references = None
 
-        self.dataset_type = t.meta['dataset_type']
-
-
         self.x, self.y, self.om, self.study = dataset.split('/')
 
         # --- grab default units

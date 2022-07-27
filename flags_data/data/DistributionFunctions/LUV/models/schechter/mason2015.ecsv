@@ -7,6 +7,7 @@
 # - {name: alpha, datatype: float64, description: faint end slope}
 # meta: !!omap
 # - {name: Mason et al. (2015)}
+# - {shortname: Mason+15}
 # - {model type: semi-empirical}
 # - {type: Schechter}
 # - references: [2015ApJ...813...21M]

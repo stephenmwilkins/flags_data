@@ -54,55 +54,71 @@ class Dataset:
 
         self.name = t.meta['name']
 
+        if verbose: print(self.name, '-'*20)
+
         if 'references' in t.meta:
             self.references = t.meta['references']
         else:
             self.references = None
 
         self.quantities = t.meta['quantities']
+        self.observatory = t.meta['observatory']
 
         self.data = {}
 
-        self.data['z'] = t['z']
-        self.data['id'] = t['id']
+
+        for c in t.colnames:
+            self.data[c] = t[c].data
+
+        # if verbose: print(self.quantities)
 
         for q in self.quantities:
 
-            self.data[q] = self.t[q]
-            self.data[q+'_err_low'] = -self.t[q+'_err_low']
-            self.data[q+'_err_upp'] = self.t[q+'_err_upp']
+            self.data[q] = self.t[q].data
+
+            # --- add errors if not available
+            for k in ['low','upp']:
+                if q+'_err_'+k not in t.colnames:
+                    self.data[q+'_err_'+k] = np.zeros(len(self.data[q]))
+                else:
+                    self.data[q+'_err_'+k] = self.t[q+'_err_'+k].data
+
+            # if verbose: print(list(self.data.keys()))
 
             if len(q)>5:
                 if q[:5] == 'log10':
-                    self.data[q[5:]] = 10**self.t[q]
-                    self.data[q[5:]+'_err_low'] = 10**(self.t[q]) - 10**(self.t[q]+self.t[q+'_err_low'])
-                    self.data[q[5:]+'_err_upp'] = 10**(self.t[q]+self.t[q+'_err_low']) - 10**(self.t[q])
+                    self.data[q[5:]] = 10**self.data[q]
+                    self.data[q[5:]+'_err_low'] = 10**(self.data[q]) - 10**(self.data[q]-self.data[q+'_err_low'])
+                    self.data[q[5:]+'_err_upp'] = 10**(self.data[q]+self.data[q+'_err_low']) - 10**(self.data[q])
 
             else:
                 if q.split('_')[0] not in ['M_UV', 'A_V', 'beta']:
-                    self.data['log10'+q] = np.log10(self.t[q])
-                    self.data['log10'+q+'_err_low'] = np.log10(self.t[q]) - np.log10(self.t[q]+self.t[q+'_err_low'])
-                    self.data['log10'+q+'_err_upp'] = np.log10(self.t[q]+self.t[q+'_err_upp']) - np.log10(self.t[q])
+                    self.data['log10'+q] = np.log10(self.data[q])
+                    self.data['log10'+q+'_err_low'] = np.log10(self.data[q]) - np.log10(self.data[q]-self.data[q+'_err_low'])
+                    self.data['log10'+q+'_err_upp'] = np.log10(self.data[q]+self.data[q+'_err_upp']) - np.log10(self.data[q])
 
         if 'sSFR' not in self.data.keys():
             if 'SFR' in self.data.keys() and 'Mstar' in self.data.keys():
-                self.data['log10sSFR'] = self.data['log10SFR'] - self.data['log10Mstar']
+                self.data['log10sSFR'] = self.data['log10SFR'] - self.data['log10Mstar'] + 9.0
                 self.data['log10sSFR_err_low'] = np.sqrt(self.data['log10SFR_err_low']**2 + self.data['log10Mstar_err_low']**2)
+
+
                 self.data['log10sSFR_err_upp'] = np.sqrt(self.data['log10SFR_err_upp']**2 + self.data['log10Mstar_err_upp']**2)
 
+                # print('low errors:', self.data['log10SFR_err_low'], self.data['log10Mstar_err_low'], self.data['log10sSFR_err_low'])
+                # print('high errors:', self.data['log10SFR_err_upp'], self.data['log10Mstar_err_upp'], self.data['log10sSFR_err_upp'])
 
-        if verbose:
-            for k,v in self.data.items():
-                print(k)
-
-            print(type(self.data['id'].data))
+        # if verbose:
+        #     for k,v in self.data.items():
+        #         print(k)
 
     def get_values(self, x, y, z, z_tolerance = 1.0):
+        print(x, y, z)
 
         if (x in self.data.keys()) and (y in self.data.keys()):
             s = np.fabs(self.data['z']-z)<z_tolerance
             if np.sum(s)>0:
-                return self.data['id'].data[s], self.data[x].data[s], self.data[y].data[s], self.data['z'].data[s]
+                return self.data['id'][s], self.data[x][s], self.data[y][s], self.data['z'][s]
 
 
     def get_values_errs(self, x, y, z, z_tolerance = 0.5):
@@ -111,13 +127,17 @@ class Dataset:
             s = np.fabs(self.data['z']-z)<z_tolerance
             if np.sum(s)>0:
 
-                X = self.data[x].data[s]
-                X_err = [self.data[x+'_err_low'].data[s], self.data[x+'_err_upp'].data[s]]
+                X = self.data[x][s]
+                X_err = [self.data[x+'_err_low'][s], self.data[x+'_err_upp'][s]]
 
-                Y = self.data[y].data[s]
-                Y_err = [self.data[y+'_err_low'].data[s], self.data[y+'_err_upp'].data[s]]
+                Y = self.data[y][s]
+                Y_err = [self.data[y+'_err_low'][s], self.data[y+'_err_upp'][s]]
 
-                return self.data['id'].data[s], X, X_err, Y, Y_err, self.data['z'].data[s]
+                print(y+'_err_upp', self.data[y+'_err_upp'])
+                print(y+'_err_low', self.data[y+'_err_low'])
+                print('Y_err', Y_err)
+
+                return self.data['id'][s], X, X_err, Y, Y_err, self.data['z'][s]
 
 
 
@@ -125,6 +145,14 @@ class Datasets:
 
     def __init__(self, datasets = '', data_dir = data_dir):
 
-        dataset_list = list_datasets(datasets)
+        self.dataset_list = list_datasets(datasets)
 
-        self.d = {ds: Dataset(ds, data_dir = data_dir) for ds in dataset_list}
+        self.d = {ds: Dataset(ds, data_dir = data_dir) for ds in self.dataset_list}
+
+class Datasets_:
+
+    def __init__(self, dataset_list = '', data_dir = data_dir):
+
+        self.dataset_list = dataset_list
+
+        self.d = {ds: Dataset(ds, data_dir = data_dir) for ds in self.dataset_list}

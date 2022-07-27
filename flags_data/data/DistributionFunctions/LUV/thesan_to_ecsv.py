@@ -6,7 +6,6 @@ from astropy.table import Table, Column, vstack
 import astropy.units as u
 
 
-
 indir = 'THESAN/UVLF'
 
 redshifts = [6,7,8,9,10,11,12,13,14]
@@ -35,10 +34,10 @@ table = vstack(tables)
 
 table.meta['x'] = 'M'
 table.meta['y'] = 'phi'
-table.meta['name'] = 'THESAN'
+table.meta['name'] = 'Thesan'
 table.meta['redshifts'] = list(set(table['z']))
 table.meta['type'] = 'binned'
-table.meta['references'] = []
+table.meta['references'] = ['2022MNRAS.511.4005K','2022MNRAS.512.4909G','2022MNRAS.512.3243S']
 
 out_name = 'thesan'
 

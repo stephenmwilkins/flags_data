@@ -1,0 +1,59 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: id, datatype: string}
+# - {name: ra, datatype: float64}
+# - {name: dec, datatype: float64}
+# - {name: z, datatype: float64}
+# - {name: z_err_low, datatype: float64}
+# - {name: z_err_upp, datatype: float64}
+# - {name: F150W, datatype: float64}
+# - {name: F150W_err_low, datatype: float64}
+# - {name: F150W_err_upp, datatype: float64}
+# - {name: F200W, datatype: float64}
+# - {name: F200W_err_low, datatype: float64}
+# - {name: F200W_err_upp, datatype: float64}
+# - {name: F356W, datatype: float64}
+# - {name: F356W_err_low, datatype: float64}
+# - {name: F356W_err_upp, datatype: float64}
+# - {name: F410M, datatype: float64}
+# - {name: F410M_err_low, datatype: float64}
+# - {name: F410M_err_upp, datatype: float64}
+# - {name: Reference, datatype: string}
+# - {name: M_UV, datatype: float64}
+# - {name: M_UV_err_low, datatype: float64}
+# - {name: M_UV_err_upp, datatype: float64}
+# - {name: log10Mstar, datatype: float64}
+# - {name: log10Mstar_err_low, datatype: float64}
+# - {name: log10Mstar_err_upp, datatype: float64}
+# - {name: log10sSFR, datatype: int64}
+# - {name: log10sSFR_err_low, datatype: int64}
+# - {name: log10sSFR_err_upp, datatype: int64}
+# - {name: age, datatype: int64}
+# - {name: age_err_low, datatype: int64}
+# - {name: age_err_upp, datatype: int64}
+# - {name: tau_V, datatype: float64}
+# - {name: tau_V_err_low, datatype: float64}
+# - {name: tau_V_err_upp, datatype: float64}
+# - {name: EW_oiii_hb, datatype: int64}
+# - {name: EW_oiii_hb_err_low, datatype: int64}
+# - {name: EW_oiii_hb_err_upp, datatype: int64}
+# meta: !!omap
+# - {name: Chen et al. (2022)}
+# - references: [2022arXiv220712657C]
+# - quantities: [M_UV, log10Mstar, log10sSFR, age]
+# - {observatory: Webb}
+# schema: astropy-2.0
+id ra dec z z_err_low z_err_upp F150W F150W_err_low F150W_err_upp F200W F200W_err_low F200W_err_upp F356W F356W_err_low F356W_err_upp F410M F410M_err_low F410M_err_upp Reference M_UV M_UV_err_low M_UV_err_upp log10Mstar log10Mstar_err_low log10Mstar_err_upp log10sSFR log10sSFR_err_low log10sSFR_err_upp age age_err_low age_err_upp tau_V tau_V_err_low tau_V_err_upp EW_oiii_hb EW_oiii_hb_err_low EW_oiii_hb_err_upp
+EGSI-0020500266 215.008524 53.007337 6.79 0.06 0.09 26.87 0.04 0.04 27.22 0.05 0.05 27.12 0.04 0.04 27.24 0.09 0.1 Bouwens2015 -19.92 0.06 0.09 7.85 0.12 0.13 40 13 16 25 7 13 0.0 0.0 0.0 302 42 76
+EGSI-9136950177 214.807042 52.83825 5.53 0.13 0.02 24.81 0.01 0.01 24.86 0.01 0.01 24.53 0.01 0.01 24.18 0.01 0.01 Bouwens2015 -21.72 0.07 0.08 9.37 0.22 0.15 5 2 6 183 98 122 0.03 0.03 0.05 301 92 179
+EGSI-9179549499 214.824887 52.830492 6.45 0.38 0.17 25.87 0.04 0.04 25.94 0.03 0.03 25.4 0.02 0.02 25.95 0.05 0.06 Bouwens2015 -20.88 0.13 0.08 8.6 0.39 0.24 21 11 46 49 34 59 0.04 0.04 0.04 766 168 227
+EGSY-9105550297 214.793958 52.841583 7.6 0.06 0.02 26.15 0.03 0.03 26.07 0.02 0.02 25.88 0.02 0.02 25.04 0.02 0.02 Bouwens2015 -20.8 0.05 0.07 8.57 0.34 0.33 39 25 60 26 16 46 0.14 0.03 0.02 1266 366 256
+EGSY-9587400281 214.99475 53.007806 7.44 0.34 0.09 25.68 0.02 0.02 25.87 0.02 0.02 25.41 0.01 0.01 24.88 0.02 0.02 Bouwens2015 -21.14 0.07 0.1 8.55 0.42 0.64 49 43 50 21 15 141 0.11 0.04 0.03 694 240 203
+EGSZ-9135048459 214.80625 52.81275 6.74 0.01 0.01 26.51 0.03 0.03 26.61 0.03 0.03 25.58 0.01 0.01 25.59 0.02 0.02 Bouwens2015 -20.33 0.04 0.06 7.59 0.03 0.27 100 0 0 3 1 6 0.02 0.01 0.03 3036 1240 733
+EGSZ-9262051131 214.859178 52.853618 7.17 0.09 0.16 26.21 0.05 0.05 26.16 0.04 0.04 26.09 0.03 0.03 25.11 0.02 0.02 Bouwens2015 -20.85 0.07 0.05 8.15 0.3 0.39 67 45 32 15 9 32 0.02 0.01 0.03 1127 209 219
+EGSZ-9271353221 214.863042 52.889472 6.54 0.11 1.33 26.1 0.03 0.03 25.99 0.02 0.02 25.36 0.02 0.02 26.27 0.08 0.08 Bouwens2015 -20.73 0.4 0.08 8.22 0.29 0.25 61 32 38 17 12 19 0.06 0.04 0.03 1208 208 220
+EGSZ-9314453285 214.881 52.89125 6.27 0.35 0.15 26.54 0.04 0.04 26.39 0.02 0.02 25.53 0.01 0.01 26.77 0.08 0.09 Bouwens2015 -20.31 0.07 0.08 7.62 0.04 0.18 100 0 0 4 1 4 0.02 0.02 0.02 2507 633 706
+EGSZ-9338153359 214.890875 52.893306 6.31 0.17 0.12 26.3 0.05 0.05 26.12 0.03 0.03 25.44 0.01 0.01 26.2 0.07 0.07 Bouwens2015 -20.76 0.05 0.07 8.27 0.44 0.45 42 31 57 24 18 69 0.01 0.01 0.03 1160 309 306
+EGSZ-9350655307 214.896083 52.925194 6.68 0.04 0.02 25.8 0.03 0.03 26.03 0.02 0.02 25.13 0.01 0.01 25.49 0.03 0.03 Bouwens2015 -20.85 0.08 0.06 8.97 0.24 0.25 9 5 10 112 60 169 0.09 0.07 0.04 797 186 185
+EGSZ-9419055074 214.924583 52.918722 6.66 0.01 0.01 25.99 0.04 0.04 25.76 0.02 0.03 24.37 0.01 0.01 25.27 0.02 0.02 Bouwens2015 -20.21 0.08 0.07 8.31 0.03 0.05 100 0 0 3 1 1 0.41 0.04 0.03 2769 581 473

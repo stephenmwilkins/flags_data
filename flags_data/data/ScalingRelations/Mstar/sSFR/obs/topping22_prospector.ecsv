@@ -1,0 +1,18 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: z, datatype: float64}
+# - {name: log10Mstar, unit: dex(solMass), datatype: float64}
+# - {name: log10sSFR, unit: dex(1 / Gyr), datatype: float64}
+# - {name: log10sSFR_P15.8, unit: dex(1 / Gyr), datatype: float64}
+# - {name: log10sSFR_P84.2, unit: dex(1 / Gyr), datatype: float64}
+# meta: !!omap
+# - {x: log10Mstar}
+# - {y: log10sSFR}
+# - {name: Topping et al. (2022) - Prospector}
+# - redshifts: [5.0, 6.0]
+# - {bin_width: 0.05}
+# - references: []
+# schema: astropy-2.0
+z log10Mstar log10sSFR log10sSFR_P15.8 log10sSFR_P84.2
+7.0 9.7 0.79 0.64 0.93

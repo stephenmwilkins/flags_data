@@ -1,0 +1,43 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: id, datatype: string}
+# - {name: z, datatype: float64}
+# - {name: z_err_low, datatype: float64}
+# - {name: z_err_upp, datatype: float64}
+# - {name: log10Mstar, unit: dex(solMass), datatype: float64}
+# - {name: log10Mstar_err_low, unit: dex, datatype: float64}
+# - {name: log10Mstar_err_upp, unit: dex, datatype: float64}
+# - {name: SFR, unit: solMass / yr, datatype: float64}
+# - {name: SFR_err_low, unit: solMass / yr, datatype: float64}
+# - {name: SFR_err_upp, unit: solMass / yr, datatype: float64}
+# - {name: age, unit: Myr, datatype: float64}
+# - {name: age_err_low, unit: Myr, datatype: float64}
+# - {name: age_err_upp, unit: Myr, datatype: float64}
+# - {name: M_UV, unit: mag, datatype: float64}
+# - {name: M_UV_err_low, unit: mag, datatype: float64}
+# - {name: M_UV_err_upp, unit: mag, datatype: float64}
+# - {name: A_V, unit: mag, datatype: float64}
+# - {name: A_V_err_low, unit: mag, datatype: float64}
+# - {name: A_V_err_upp, unit: mag, datatype: float64}
+# meta: !!omap
+# - {name: Leethochawalit et al. (2022)}
+# - {observatory: Webb}
+# - quantities: [log10Mstar, SFR, age, A_V, M_UV]
+# - references: [2022arXiv220711135L]
+# schema: astropy-2.0
+id z z_err_low z_err_upp log10Mstar log10Mstar_err_low log10Mstar_err_upp SFR SFR_err_low SFR_err_upp age age_err_low age_err_upp M_UV M_UV_err_low M_UV_err_upp A_V A_V_err_low A_V_err_upp
+1435 7.3 5.2 0.5 8.7 0.3 0.1 1.9 0.5 0.8 220 100 79 -18.5 0.4 0.3 0.4 0.2 0.2
+2186 8.0 0.6 0.6 8.2 0.5 0.2 1.1 0.5 0.4 9.7 81 89 -18.7 0.1 0.4 0.2 0.1 0.2
+2838 6.7 0.2 0.2 9.5 0.1 0.1 12.9 3.3 3.9 210 71 83 -19.3 0.1 0.1 0.9 0.1 0.2
+3035 7.7 0.4 0.3 8.6 0.2 0.2 4.5 1.6 1.9 30 18 78 -20.1 0.2 0.3 0.5 0.3 0.1
+4478 7.3 5.4 0.5 8.6 0.3 0.3 2.1 0.6 0.5 140 77 110 -19.1 0.3 0.2 0.2 0.2 0.2
+4733 8.4 0.2 0.2 7.9 0.1 0.1 0.8 0.1 0.1 1.9 0.28 0.62 -19.8 0.1 0.2 0.3 0.1 0.1
+5054 8.8 0.5 0.4 8.7 0.2 0.2 2.6 0.5 0.8 140 61 61 -19.6 0.1 0.2 0.1 0.1 0.2
+5114 8.2 0.4 0.4 8.4 0.4 0.3 1.9 0.7 0.5 88 64 81 -19.4 0.1 0.1 0.1 0.1 0.1
+5673 8.2 0.6 0.6 8.6 0.4 0.2 2.2 0.7 0.5 130 97 69 -19.4 0.2 0.2 0.1 0.1 0.2
+1666 7.9 6.1 0.4 8.9 0.4 0.1 4.8 1.9 1.3 150 60 140 -19.5 0.2 0.6 0.4 0.1 0.3
+4651 8.1 0.6 0.6 9.0 0.2 0.2 4.5 1.2 2.8 190 82 73 -19.3 0.2 0.3 0.4 0.2 0.3
+5397 8.3 0.5 0.5 8.7 0.2 0.1 3.1 0.7 1.0 140 63 70 -19.4 0.1 0.2 0.3 0.2 0.2
+6314 8.3 0.5 0.5 9.0 0.6 0.3 4.7 2.1 3.8 140 110 99 -18.7 0.2 0.5 0.7 0.2 0.4
+6401 8.3 5.6 0.5 8.8 0.4 0.1 2.9 2.6 1.3 160 61 430 -19.3 0.2 3.1 0.3 0.2 0.5

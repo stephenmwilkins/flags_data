@@ -7,10 +7,10 @@
 # meta: !!omap
 # - {x: M}
 # - {y: phi}
-# - {name: THESAN}
+# - {name: Thesan}
 # - redshifts: [6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0]
 # - {type: binned}
-# - references: []
+# - references: [2022MNRAS.511.4005K, 2022MNRAS.512.4909G, 2022MNRAS.512.3243S]
 # schema: astropy-2.0
 z M phi
 6.0 -22.75 6.560725035564769e-07

@@ -73,20 +73,30 @@ def list_datasets(datasets, data_dir = data_dir):
 
 class DatasetInfo:
 
-    def __init__(self, datasets = 'LUV', data_dir = data_dir):
+    def __init__(self, datasets = 'LUV', data_dir = data_dir, remove_repeats = True):
 
         self.data_dir = data_dir
 
         self.df_type = datasets.split('/')[0]
 
-        self.datasets = datasets
+        self.datasets_ = datasets
         self.dataset_list = list_datasets(datasets)
-        self.n = len(self.dataset_list)
 
-        self.studies = list(set([x.split('/')[-1] for x in self.dataset_list]))
-        self.type_studies = list(set(['/'.join(x.split('/')[-2:]) for x in self.dataset_list]))
-        self.studies_type = list(set(['/'.join(x.split('/')[-2:][::-1]) for x in self.dataset_list])) # useful for sorting
-        self.d_from_st = dict(zip(self.studies_type, self.dataset_list))
+
+        self.datasets = [x.split('/') for x in self.dataset_list]
+        self.datasets = sorted(self.datasets, key = lambda x: x[-1])
+
+        self.studies = np.array([x[-1] for x in self.datasets])
+
+        # --- get rid of the Schechter parameters where we have the binned version
+        if remove_repeats:
+            for x in set(self.studies):
+                if np.sum(self.studies==x)>1:
+                    x_ = [datasets.split('/')[0], 'models', 'schechter', x] # eughh
+                    self.datasets.remove(x_)
+
+        self.dataset_list = ['/'.join(x) for x in self.datasets]
+        self.n = len(self.dataset_list)
 
         # --- read all datasets
         self.dataset = {}
@@ -117,12 +127,40 @@ class DatasetInfo:
             if dataset_name.split('/')[-1] == 'schechter':
                 print(dataset_name, self.redshifts[dataset_name])
 
-    def get_datasets_at_z(self, z, z_tolerance = 0.2):
+
+    # def get_datasets_at_z(self, z, z_tolerance = 0.2, remove_repeats = True):
+    #     datasets_z = []
+    #     datasets_ = []
+    #     z_ = []
+    #
+    #     for dataset_name in self.dataset_list:
+    #         for z_ in self.redshifts[dataset_name]:
+    #             if np.fabs(z-z_)<z_tolerance:
+    #                 datasets_z.append((dataset_name, z_))
+
+
+    def get_datasets_at_z(self, z, z_tolerance = 0.2, remove_repeats = True):
         datasets_z = []
-        for dataset_name in self.dataset_list:
-            for z_ in self.redshifts[dataset_name]:
-                if np.fabs(z-z_)<z_tolerance:
-                    datasets_z.append((dataset_name, z_))
+
+        if remove_repeats:
+            redshift = {}
+            for dataset_name in self.dataset_list:
+                for z_ in self.redshifts[dataset_name]:
+                    if np.fabs(z-z_)<z_tolerance:
+                            if dataset_name not in redshift.keys():
+                                redshift[dataset_name] = z_
+                            else:
+                                if np.fabs(z-z_)<np.fabs(z-redshift[dataset_name]):
+                                    redshift[dataset_name] = z_
+            datasets_z = [(k,v) for k,v in redshift.items()]
+
+        else:
+            for dataset_name in self.dataset_list:
+                for z_ in self.redshifts[dataset_name]:
+                    if np.fabs(z-z_)<z_tolerance:
+                        datasets_z.append((dataset_name, z_))
+
+
         return(datasets_z)
 
     def plot_redshift_range(self, cmap = 'cmr.guppy'):
@@ -145,32 +183,27 @@ class DatasetInfo:
 
         ax = fig.add_axes((left, bottom, width, height))
 
-
         colors = cmr.take_cmap_colors(cmap, self.n)
 
-        z_min, z_extent, labels = [], [], []
+        for i_, ((df, modobs, df_type, study), color) in enumerate(zip(self.datasets, colors)):
 
-        for i, study_type in enumerate(sorted(self.studies_type)):
+            i = self.n-i_-1
 
-            m = read(self.d_from_st[study_type], data_dir = self.data_dir)
+            dataset_name = f'{df}/{modobs}/{df_type}/{study}'
+            m = self.dataset[dataset_name]
 
-            label = rf'$\rm \mathbf{{ {m.name} }}\ [{m.df_type}]$'
+            nm = m.name.replace(' ','\ ')
+
+            label = rf'$\rm \mathbf{{ {nm} }}\ [{m.df_type}]$'
+            print(i, df_type, study, nm)
             ax.text(3.3, i, label, fontsize = 8, ha='right', va = 'center')
 
-            # if m.references:
-            #
-            #     articles = [list(ads.SearchQuery(bibcode=bibcode))[0] for bibcode in m.references]
-            #     refs = [f"{article.first_author.split(',')[0]}+{article.year}"  for article in articles]
-            #
-            #     ax.text(3.3, i - 0.2, ', '.join(refs), fontsize = 6, ha='right', color = '0.5', va = 'center')
-
-            z_min.append(np.min(m.redshifts))
-            z_extent.append(np.max(m.redshifts)-np.min(m.redshifts))
-
-        ax.barh(np.arange(self.n), z_extent, left = z_min, color = colors, align='center')
+            ax.barh(i, np.max(m.redshifts)-np.min(m.redshifts), left = np.min(m.redshifts), color = color, align='center', alpha = 0.5, height = 1)
+            for z in m.redshifts:
+                ax.plot([z,z],[i-0.5,i+0.5], color = color, lw=1, solid_capstyle='butt')
 
         ax.set_xlim([3.5, 15.5])
-        ax.set_ylim([-0.75, self.n - 0.25])
+        ax.set_ylim([-0.5, self.n - 0.5])
         ax.set_yticks([])
         ax.set_xlabel(r'$\rm z$')
 
@@ -182,10 +215,14 @@ class DatasetInfo:
 
         fig, ax = simple_fig(fig_size = (4.5, 3.5))
 
-        colors = cmr.take_cmap_colors(cmap, n_datasets)
-        for i, (study_type, color) in enumerate(zip(sorted(self.studies_type), colors)):
+        colors = cmr.take_cmap_colors(cmap, self.n)
 
-            m = read(self.d_from_st[study_type], data_dir = self.data_dir)
+        for i_, ((df, modobs, df_type, study), color) in enumerate(zip(self.datasets, colors)):
+
+            i = self.n-i_-1
+
+            dataset_name = f'{df}/{modobs}/{df_type}/{study}'
+            m = self.dataset[dataset_name]
 
             if m.df_type == 'binned':
 
@@ -211,7 +248,7 @@ class DatasetInfo:
         return fig, ax
 
 
-    def plot_dfs(self, redshifts = np.arange(5, 14, 1), cmap = 'cmr.guppy', x_range = None, y_range = [-6.99, -0.51]):
+    def plot_dfs(self, redshifts = np.arange(5, 17, 1), cmap = 'cmr.guppy', x_range = None, y_range = [-6.99, -0.51]):
 
         if not x_range:
             x_range = x_ranges[self.df_type]
@@ -224,18 +261,20 @@ class DatasetInfo:
         bottom = 0.1
         top = 0.95
 
-        gs = fig.add_gridspec(3, 3, left = left, bottom = bottom, right = right, top = top, hspace=0, wspace=0)
+        gs = fig.add_gridspec(4, 3, left = left, bottom = bottom, right = right, top = top, hspace=0, wspace=0)
         axes = gs.subplots(sharex=True, sharey=True)
 
+        colors = dict(zip(self.dataset_list, cmr.take_cmap_colors(cmap, self.n)))
 
-        colors = dict(zip(self.dataset_list, cmr.take_cmap_colors(cmap, len(self.dataset_list))))
-        lss = dict(zip(self.dataset_list, ['-','--','-.',':']*5))
+        lss = dict(zip(self.dataset_list, ['-','--','-.',':']*10))
+
+        print(self.names)
 
         # --- create legend
         lax = fig.add_axes([right, bottom, 0.3, top-bottom])
         lax.axis('off')
         handles = [Line2D([0], [0], color = colors[ds], lw=2, ls=lss[ds], label=self.names[ds]) for ds in self.dataset_list]
-        lax.legend(handles=handles, loc='center left', title = self.datasets, fontsize = 8)
+        lax.legend(handles=handles, loc='center left', title = self.datasets_, fontsize = 8)
 
         for ax, z in zip(axes.flatten(), redshifts):
 
@@ -243,22 +282,30 @@ class DatasetInfo:
 
             ax.text(0.05, 0.9, rf'$\rm z={z:.0f}$', color = '0.3', transform = ax.transAxes)
 
-            dataset_z = self.get_datasets_at_z(z, z_tolerance = 0.1) # --- get list of datasets at this redshift
+            dataset_z = self.get_datasets_at_z(z, z_tolerance = 0.51) # --- get list of datasets at this redshift
+
 
 
             for dataset_name, z in dataset_z:
+
+
+                _, obsmod, df_type, study = dataset_name.split('/')
 
                 dataset = self.dataset[dataset_name]
 
                 color = colors[dataset_name]
                 ls  = lss[dataset_name]
 
-                if dataset.df_type == 'binned':
-                    ax.plot(dataset.log10X[z], dataset.log10phi_dex[z], color = color, label = rf'$\rm {dataset.name} $', ls = ls)
+                if df_type == 'binned' and obsmod == 'models':
+                    ax.plot(dataset.log10X[z], dataset.log10phi_dex[z], color = color, ls = ls)
 
-                if dataset.df_type == 'schechter':
+                if df_type == 'binned' and obsmod == 'obs':
+                    ax.scatter(dataset.log10X[z], dataset.log10phi[z], color = 'k', label = rf'$\rm {dataset.name} $', s = 3)
+                    ax.errorbar(dataset.log10X[z], dataset.log10phi[z], xerr = dataset.log10X_binw[z]/2., yerr = dataset.log10phi_err[z], fmt='o', elinewidth=1, ms=4, c='k', mec='k', zorder = 2)
+
+                if df_type == 'schechter':
                     log10L = np.arange(*x_range, 0.01)
-                    ax.plot(bin_centres(log10L), dataset.L(z).log10phi_binned(log10L), color = color, label = rf'$\rm {dataset.name} $', ls = ls)
+                    ax.plot(bin_centres(log10L), dataset.L(z).log10phi_binned(log10L), color = color, ls = ls)
 
 
 
@@ -282,6 +329,16 @@ class Schechter:
 
         self.df_type = 'schechter'
         self.name = t.meta['name']
+
+        nm = self.name.replace(' ', '\ ')
+        self.label = rf'$\rm {nm}$'
+
+        if 'shortname' in t.meta.keys():
+            self.slabel = rf'$\rm {t.meta["shortname"]}$'
+        else:
+            self.slabel = self.label
+
+
         self.t = t
         self.redshifts = self.t['redshift'].data
 
@@ -370,14 +427,18 @@ class Binned:
         self.name = t.meta['name']
         self.t = t
 
+        nm = self.name.replace(' ', r'\ ')
+        self.label = rf'$\rm {nm}$'
 
-        self.log10X = {}
+        if 'shortname' in t.meta.keys():
+            print(self.name)
+            self.slabel = rf'$\rm {t.meta["shortname"]}$'
+        else:
+            self.slabel = self.label
 
         # original x quantity and units
         self.x = t.meta['x']
         self.x_unit = t[self.x].unit
-
-        if self.x in ['M', 'log10L']: self.M = {}
 
         if self.x == 'M':
             self.log10x = 'log10L'
@@ -390,47 +451,143 @@ class Binned:
         self.y = t.meta['y']
         self.y_unit = t[self.y].unit
 
+
+        if 'log10phi_err_low' in t.colnames or 'phi_err_low' in t.colnames:
+            uncertainties = True
+        else:
+            uncertainties = False
+
+
+        self.log10X = {}
+        self.log10X_binw = {}
+
+        self.phi_dex = {}
+        if uncertainties:
+            self.phi_dex_err_upp = {}
+            self.phi_dex_err_low = {}
+            self.phi_dex_err = {}
+
         self.log10phi_dex = {}
-        self.log10phi_mag = {}
+        if uncertainties:
+            self.log10phi_dex_err_upp = {}
+            self.log10phi_dex_err_low = {}
+            self.log10phi_dex_err = {}
+
+        if self.x in ['M', 'log10L']:
+
+            self.M = {}
+            self.M_binw = {}
+
+            self.phi_mag = {}
+            if uncertainties:
+                self.phi_mag_err_upp = {}
+                self.phi_mag_err_low = {}
+                self.phi_mag_err = {}
+
+            self.log10phi_mag = {}
+            if uncertainties:
+                self.log10phi_mag_err_upp = {}
+                self.log10phi_mag_err_low = {}
+                self.log10phi_mag_err = {}
+
+
 
         # --- if data is redshift, log10L, phi ... this is most useful I think
         self.redshifts = list(set(self.t['z'].data))
         self.redshifts.sort()
         # --- make sure that redshift list is monotonically increasing
-        if self.redshifts[0]>self.redshifts[1]:
-            self.redshifts = self.redshifts[::-1]
+        if len(self.redshifts)>1:
+            if self.redshifts[0]>self.redshifts[1]:
+                self.redshifts = self.redshifts[::-1]
 
         # --- extract luminosities or magnitudes and number densities, making conversions where necessary.
         for z in self.redshifts:
 
             s = self.t['z'] == z
 
+            # --- calculate log10X and M (if necessary)
             if self.x in ['log10L','log10Mstar','log10SFR']:
                 self.log10X[z] = self.t[self.x][s].data
-                if self.x in ['M', 'log10L']: self.M[z] = log10Lnu_to_M(self.log10X[z])
+
+                if 'delta'+self.x in self.t.colnames:
+                    self.log10X_binw[z] = self.t['delta'+self.x][s].data
+                else:
+                    self.log10X_binw[z] = (self.log10X[z][1]-self.log10X[z][0])*np.ones(len(self.log10X[z]))
+
+                if self.x in ['M', 'log10L']:
+                    self.M[z] = log10Lnu_to_M(self.log10X[z])
+                    self.M_binw[z] = self.log10X_binw[z]*2.5
+
+
             elif self.x == 'M':
                 self.M[z] = self.t['M'][s].data
                 self.log10X[z] = M_to_log10Lnu(self.M[z])
+
+                if 'delta'+self.x in self.t.colnames:
+                    self.M_binw[z] = self.t['delta'+self.x][s].data
+                else:
+                    self.M_binw[z] = (self.M[z][1]-self.M[z][0])*np.ones(len(self.M[z]))
+
+                self.log10X_binw[z] = self.M_binw[z]/2.5
+
+
             else:
                 print('WARNING [x]')
+
+            # --- calculate log10X and M (if necessary)
 
             if self.y == 'phi':
                 phi = self.t['phi'][s].data
                 log10phi = np.log10(phi)
+
+                if uncertainties:
+                    phi_err_low = self.t['phi_err_low'][s].data
+                    phi_err_upp = self.t['phi_err_upp'][s].data
+                    log10phi_err_low = np.log10(phi)-np.log10(phi-phi_err_low)
+                    log10phi_err_upp = np.log10(phi+phi_err_upp)-np.log10(phi)
+                    self.log10phi_dex_err_low[z] = log10phi_err_low
+                    self.log10phi_dex_err_upp[z] = log10phi_err_upp
+                    self.log10phi_dex_err[z] = [log10phi_err_low, log10phi_err_upp]
+                    self.log10phi_mag_err_low[z] = log10phi_err_low
+                    self.log10phi_mag_err_upp[z] = log10phi_err_upp
+                    self.log10phi_dex_err[z] = [self.log10phi_mag_err_low[z], self.log10phi_mag_err_upp[z]]
+
             elif self.y == 'log10phi':
                 log10phi = self.t['log10phi'][s].data
                 phi = 10**log10phi
+
+                if uncertainties:
+                    self.log10phi_dex_err_low[z] = self.t['log10phi_err_low'][s].data
+                    self.log10phi_dex_err_upp[z] = self.t['log10phi_err_upp'][s].data
+                    self.log10phi_dex_err[z] = [self.log10phi_dex_err_low[z], self.log10phi_dex_err_upp[z]]
+                    self.log10phi_mag_err_low[z] = self.t['log10phi_err_low'][s].data
+                    self.log10phi_mag_err_upp[z] = self.t['log10phi_err_upp'][s].data
+                    self.log10phi_dex_err[z] = [self.log10phi_mag_err_low[z], self.log10phi_mag_err_upp[z]]
+
+                    # -- should add the inverse (e.g. phi_mag_err)
+
             else:
                 print('WARNING [phi]')
 
             if self.y_unit == units.Unit('1 / (dex Mpc3)') or self.y_unit == units.Unit('dex(1 / (dex Mpc3))'):
                 self.log10phi_dex[z] = log10phi
                 self.log10phi_mag[z] = log10phi + np.log10(0.4)
+
             elif self.y_unit == units.Unit('1 / (mag Mpc3)') or self.y_unit == units.Unit('dex(1 / (mag Mpc3))'):
                 self.log10phi_mag[z] = log10phi
                 self.log10phi_dex[z] = log10phi - np.log10(0.4)
             else:
                 print('WARNING [unit]')
+
+            # --- short hand
+            self.log10phi = self.log10phi_dex
+            if uncertainties: self.log10phi_err = self.log10phi_dex_err
+
+
+
+
+
+
 
 class Plots:
 
