@@ -8,6 +8,7 @@
 # meta: !!omap
 # - {name: 'Illustris TNG: Model-A'}
 # - {model type: hydro}
+# - {intrinsic: False}
 # - {type: Schechter}
 # - references: [2020MNRAS.492.5167V]
 # schema: astropy-2.0

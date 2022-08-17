@@ -1,0 +1,23 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: z, datatype: float64}
+# - {name: M, unit: mag, datatype: float64}
+# - {name: deltaM, unit: mag, datatype: float64}
+# - {name: phi, unit: 1 / (mag Mpc3), datatype: float64}
+# - {name: phi_err_low, unit: 1 / (mag Mpc3), datatype: float64}
+# - {name: phi_err_upp, unit: 1 / (mag Mpc3), datatype: float64}
+# meta: !!omap
+# - {x: M}
+# - {y: phi}
+# - {name: Bowler et al. (2020)}
+# - {type: binned}
+# - redshifts: [8, 9]
+# - references: [2022arXiv220712356D]
+# schema: astropy-2.0
+z M deltaM phi phi_err_low phi_err_upp
+8 -21.65 0.5 2.95E-6 0.98E-6 0.98E-6
+8 -22.15 0.5 0.58E-6 0.33E-6 0.33E-6
+8 -22.90 1.0 0.14E-6 0.06E-6 0.06E-6
+9 -21.90 1.0 0.84E-6 0.49E-6 0.49E-6
+9 -22.90 1.0 0.16E-6 0.11E-6 0.11E-6

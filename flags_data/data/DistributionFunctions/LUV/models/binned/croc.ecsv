@@ -8,6 +8,7 @@
 # - {x: M}
 # - {y: phi}
 # - {name: CROC}
+# - {intrinsic: False}
 # - redshifts: [6.0, 7.0, 8.0, 9.0, 10.0]
 # - {type: binned}
 # - references: [2016ApJ...825L..17G]

@@ -8,16 +8,21 @@ from flare.LF.literature import UV
 
 from astropy.cosmology import Planck18 as cosmo
 
-z1, z2 = 10, 13
-z1, z2 = 15, 20
+z1, z2 = 4, 5
+# z1, z2 = 10, 13
+z1, z2 = 15, 17
+
 
 vol = cosmo.comoving_volume(z2) - cosmo.comoving_volume(z1)
 print(vol)
 
-area = 49.*u.arcmin*u.arcmin # naidu
+# area = 49.*u.arcmin*u.arcmin # naidu
 area = 45.*u.arcmin*u.arcmin # donnen
 
 vol_survey = vol*area.to('sr')/(4*np.pi*u.sr)
+
+
+print(vol_survey/1E5)
 
 # print(vol_survey)
 # print(vol_survey/1E5)

@@ -54,6 +54,9 @@ class Dataset:
 
         self.name = t.meta['name']
 
+        nm = self.name.replace(' ', '\ ')
+        self.label = rf'$\rm {nm}$'
+
         if verbose: print(self.name, '-'*20)
 
         if 'references' in t.meta:

@@ -7,6 +7,7 @@
 # - {name: alpha, datatype: float64, description: faint end slope}
 # meta: !!omap
 # - {name: FLARES}
+# - {intrinsic: False}
 # - {model type: hydro}
 # - {type: Schechter}
 # - references: [2021MNRAS.500.2127L, 2021MNRAS.501.3289V]

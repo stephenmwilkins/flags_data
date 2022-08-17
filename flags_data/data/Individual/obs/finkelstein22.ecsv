@@ -37,4 +37,3 @@
 # schema: astropy-2.0
 id z z_err_low z_err_upp log10Mstar log10Mstar_err_low log10Mstar_err_upp SFR SFR_err_low SFR_err_upp log10sSFR log10sSFR_err_low log10sSFR_err_upp age age_err_low age_err_upp A_V A_V_err_low A_V_err_upp beta beta_err_low beta_err_upp M_UV M_UV_err_low M_UV_err_upp field ra dec
 CEERS-z14-1 14.3 1.1 0.4 8.45 0.32 0.33 4.1 3.5 4.2 1.1 0.9 0.7 16 6 45 0.06 0.04 0.23 -2.32 0.2 0.11 -20.3 0.1 0.1 CEERS 214.943153 52.942449
-CEERS-z14-1 13.49 1.1 0.4 8.45 0.32 0.33 4.1 3.5 4.2 1.1 0.9 0.7 16 6 45 0.06 0.04 0.23 -2.32 0.2 0.11 -20.3 0.1 0.1 CEERS 214.943153 52.942449

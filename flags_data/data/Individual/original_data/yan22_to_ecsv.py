@@ -6,7 +6,7 @@ from astropy.table import Table, Column, vstack, join
 import astropy.io.ascii as ascii
 from astropy import units as u
 from astropy.coordinates import SkyCoord
-
+from flare import photom
 
 fn = 'yan22'
 
@@ -28,6 +28,19 @@ table.add_column(Column(data = ra, name = 'ra', unit = 'deg'))
 table.add_column(Column(data = dec, name = 'dec', unit = 'deg'))
 
 table.add_column(Column(data = ['SMACS']*len(name), name = 'field'))
+
+
+
+z = d['z'].data
+M_UV = np.zeros(len(d['id']))
+
+M_UV[z<13] = d['F200W'][z<13] - photom.DM(z[z<13])
+M_UV[z>=13] = d['F277W'][z>13] - photom.DM(z[z>13])
+print(M_UV)
+
+table.add_column(Column(data = M_UV, name = 'M_UV', unit = 'mag'))
+
+
 
 
 table.meta['name'] = f'Yan et al. (2022)'

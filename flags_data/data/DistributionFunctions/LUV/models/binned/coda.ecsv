@@ -9,6 +9,7 @@
 # - references: [2016MNRAS.463.1462O]
 # - {x: M}
 # - {y: log10phi}
+# - {intrinsic: False}
 # - redshifts: [6, 7, 8, 10]
 # - {type: binned}
 # schema: astropy-2.0

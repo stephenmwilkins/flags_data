@@ -8,6 +8,7 @@
 # - {x: M}
 # - {y: log10phi}
 # - {name: Astrid}
+# - {intrinsic: False}
 # - redshifts: [3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0]
 # - {type: binned}
 # - references: [2022MNRAS.512.3703B]

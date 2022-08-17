@@ -8,6 +8,7 @@
 # - {x: M}
 # - {y: phi}
 # - {name: Behroozi and Silk (2015)}
+# - {intrinsic: False}
 # - {shortname: Behroozi+15}
 # - redshifts: [10.0, 12.5, 14.0, 15.0]
 # - {type: binned}

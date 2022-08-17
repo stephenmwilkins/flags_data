@@ -7,6 +7,7 @@
 # meta: !!omap
 # - {x: M}
 # - {y: log10phi}
+# - {intrinsic: True}
 # - {name: Delphi}
 # - redshifts: [5.05, 6.05, 7.13, 8.13, 9.11, 9.93, 10.93, 12.21, 12.98, 13.89, 14.95, 16.23, 17.8, 19.78]
 # - {type: binned}

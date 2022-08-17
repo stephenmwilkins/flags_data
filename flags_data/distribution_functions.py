@@ -28,9 +28,7 @@ from .utilities import log10Lnu_to_M, M_to_log10Lnu, bin_centres, simple_fig, la
 
 this_dir = os.path.dirname(os.path.abspath(__file__))
 
-import ads
 
-ads.config.token = 'qm1AtsIgKukl0jqMjYaEa2LHK9am6gQka6opvce1'
 
 data_dir = f'{this_dir}/data/DistributionFunctions'
 
@@ -42,6 +40,8 @@ x_ranges['Mstar'] = [7.5, 11.5]
 
 
 def read(dataset, data_dir = data_dir, interp_scheme = 'linear'):
+
+    print(f'Reading {dataset}')
 
     t = Table.read(f'{data_dir}/{dataset}.ecsv')
 
@@ -55,6 +55,11 @@ def read(dataset, data_dir = data_dir, interp_scheme = 'linear'):
         d.references = t.meta['references']
     else:
         d.references = None
+
+    d.id = dataset.split('/')[-1]
+
+    if 'intrinsic' in t.meta:
+        d.intrinsic = t.meta['intrinsic']
 
     return d
 
@@ -579,9 +584,25 @@ class Binned:
             else:
                 print('WARNING [unit]')
 
-            # --- short hand
-            self.log10phi = self.log10phi_dex
-            if uncertainties: self.log10phi_err = self.log10phi_dex_err
+
+            if len(self.log10X[z])>1:
+
+                if self.log10X[z][1]<self.log10X[z][0]:
+
+                    self.M[z] = self.M[z][::-1]
+                    self.log10X[z] = self.log10X[z][::-1]
+                    self.log10phi_dex[z] = self.log10phi_dex[z][::-1]
+
+                    if uncertainties:
+                        self.log10phi_dex_err_upp[z] = self.log10phi_dex_err_upp[z][::-1]
+                        self.log10phi_dex_err_low[z] = self.log10phi_dex_err_low[z][::-1]
+                        self.log10phi_dex_err[z][0] = self.log10phi_dex_err[z][0][::-1]
+                        self.log10phi_dex_err[z][1] = self.log10phi_dex_err[z][1][::-1]
+
+
+        # --- short hand
+        self.log10phi = self.log10phi_dex
+        if uncertainties: self.log10phi_err = self.log10phi_dex_err
 
 
 
