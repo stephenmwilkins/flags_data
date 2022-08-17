@@ -67,10 +67,28 @@ def read(dataset, data_dir = data_dir, interp_scheme = 'linear'):
 # def list_datasets(datasets, data_dir = f'{this_dir}/data/DistributionFunctions'):
 #     return list(map(lambda x: x.replace('.ecsv', ''), os.listdir(f'{data_dir}/{datasets}')))
 
-def list_datasets(datasets, data_dir = data_dir):
+def list_datasets(datasets, data_dir = data_dir, remove_repeats = False):
     l = [os.path.join(dp, f.split('.')[0]) for dp, dn, fn in os.walk(os.path.expanduser(f'{data_dir}/{datasets}')) for f in fn if f.endswith('.ecsv')]
-    l = [l_[len(data_dir)+1:] for l_ in l]
-    return l
+    dataset_list = [l_[len(data_dir)+1:] for l_ in l]
+
+    if remove_repeats:
+        dataset_list_ = [x.split('/') for x in dataset_list]
+        dataset_list_ = sorted(dataset_list_, key = lambda x: x[-1])
+
+        studies = np.array([x[-1] for x in dataset_list_])
+
+        # --- get rid of the Schechter parameters where we have the binned version
+        if remove_repeats:
+            for x in set(studies):
+                if np.sum(studies==x)>1:
+                    x_ = [datasets.split('/')[0], 'models', 'schechter', x] # eughh
+                    dataset_list_.remove(x_)
+
+        dataset_list = ['/'.join(x) for x in dataset_list_]
+
+
+
+    return dataset_list
 
 
 
@@ -82,10 +100,12 @@ class DatasetInfo:
 
         self.data_dir = data_dir
 
-        self.df_type = datasets.split('/')[0]
-
-        self.datasets_ = datasets
-        self.dataset_list = list_datasets(datasets)
+        if type(datasets) == str:
+            self.df_type = datasets.split('/')[0]
+            self.datasets_ = datasets
+            self.dataset_list = list_datasets(datasets)
+        else:
+            self.dataset_list = datasets
 
 
         self.datasets = [x.split('/') for x in self.dataset_list]

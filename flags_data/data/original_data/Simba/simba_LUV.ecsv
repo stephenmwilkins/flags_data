@@ -2,20 +2,19 @@
 # ---
 # datatype:
 # - {name: z, datatype: float64, description: redshift}
-# - {name: M, datatype: float64, unit: mag}
+# - {name: log10L, datatype: float64, unit: dex(erg s^-1 Hz^-1)}
 # - {name: log10phi, datatype: float64, unit: dex(Mpc^-3 dex^-1)}
 # - {name: err_log10phi, datatype: float64, unit: dex(Mpc^-3 dex^-1)}
 # meta: !!omap
 # - {name: Simba}
-# - {x: M}
+# - {x: MUV}
 # - {y: log10phi}
-# - {intrinsic: True}
 # - references: [2019MNRAS.486.2827D]
 # - redshifts: [5.0, 6.0, 7.0, 8.0, 9.0]
 # - {model type: hydro}
 # - {type: binned}
 # schema: astropy-2.0
-z M log10phi err_log10phi
+z MUV log10phi err_log10phi
 9.00 -15.20 -3.6665 0.1924
 9.00 -15.40 -3.7061 0.2129
 9.00 -15.60 -3.6107 0.2057
