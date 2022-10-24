@@ -11,6 +11,7 @@
 # - {intrinsic: False}
 # - redshifts: [4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15]
 # - {type: binned}
+# - references: [2019MNRAS.483.2983Y]
 # schema: astropy-2.0
 z M log10phi
 4.0 -23.5 -7.7337118439922925
