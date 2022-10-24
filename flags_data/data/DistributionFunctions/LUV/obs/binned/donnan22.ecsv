@@ -13,6 +13,7 @@
 # - {y: phi}
 # - {name: Donnan et al. (2022)}
 # - {type: binned}
+# - observatory: [Webb, VISTA]
 # - redshifts: [8.0, 9.0, 10.0, 11.0, 12.0, 13.75]
 # - references: [2022arXiv220712356D]
 # schema: astropy-2.0

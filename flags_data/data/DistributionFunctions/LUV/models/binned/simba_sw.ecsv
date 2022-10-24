@@ -7,7 +7,7 @@
 # meta: !!omap
 # - {x: M}
 # - {y: log10phi}
-# - {name: Simba (SW)}
+# - {name: Simba}
 # - {intrinsic: False}
 # - redshifts: [5.929968, 5.0244, 7.054463, 7.962628, 9.966759, 9.033071, 11.037011]
 # - {type: binned}

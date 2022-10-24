@@ -1,0 +1,22 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: redshift, datatype: float64, description: redshift}
+# - {name: M*, datatype: float64, description: characteristic absolute magnitude}
+# - {name: log10phi*, datatype: float64, description: log10(number density/Mpc^-3)}
+# - {name: alpha, datatype: float64, description: faint end slope}
+# meta: !!omap
+# - {name: Millennium-TNG}
+# - {intrinsic: False}
+# - {shortname: Millennium-TNG}
+# - {model type: hydrodynamical}
+# - {type: Schechter}
+# - references: [2015ApJ...813...21M]
+# schema: astropy-2.0
+redshift M* log10phi* alpha
+8.0 -21.11 -3.92 -2.01
+9.0 -21.06 -4.54 -2.23
+10.0 -20.29 -4.54 -2.25
+11.0 -20.62 -5.35 -2.44
+12.0 -19.28 -4.47 -2.06
+15.0 -19.50 -6.45 -2.91

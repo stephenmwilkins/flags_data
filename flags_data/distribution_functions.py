@@ -61,6 +61,15 @@ def read(dataset, data_dir = data_dir, interp_scheme = 'linear'):
     if 'intrinsic' in t.meta:
         d.intrinsic = t.meta['intrinsic']
 
+    # --- set name and label, including short label if given
+    d.name = t.meta['name']
+    nm = d.name.replace(' ', '\ ')
+    d.label = rf'$\rm {nm}$'
+    if 'shortname' in t.meta.keys():
+        d.slabel = rf'$\rm {t.meta["shortname"]}$'
+    else:
+        d.slabel = d.label
+
     return d
 
 
@@ -353,15 +362,15 @@ class Schechter:
     def __init__(self, t, scheme = 'linear'):
 
         self.df_type = 'schechter'
-        self.name = t.meta['name']
-
-        nm = self.name.replace(' ', '\ ')
-        self.label = rf'$\rm {nm}$'
-
-        if 'shortname' in t.meta.keys():
-            self.slabel = rf'$\rm {t.meta["shortname"]}$'
-        else:
-            self.slabel = self.label
+        # self.name = t.meta['name']
+        #
+        # nm = self.name.replace(' ', '\ ')
+        # self.label = rf'$\rm {nm}$'
+        #
+        # if 'shortname' in t.meta.keys():
+        #     self.slabel = rf'$\rm {t.meta["shortname"]}$'
+        # else:
+        #     self.slabel = self.label
 
 
         self.t = t
@@ -444,22 +453,17 @@ class Schechter:
 
             return np.log10(self.phi_binned(log10L))
 
+
+
+
+            
+
 class Binned:
 
     def __init__(self, t):
 
         self.df_type = 'binned'
-        self.name = t.meta['name']
         self.t = t
-
-        nm = self.name.replace(' ', r'\ ')
-        self.label = rf'$\rm {nm}$'
-
-        if 'shortname' in t.meta.keys():
-            print(self.name)
-            self.slabel = rf'$\rm {t.meta["shortname"]}$'
-        else:
-            self.slabel = self.label
 
         # original x quantity and units
         self.x = t.meta['x']
@@ -573,9 +577,10 @@ class Binned:
                     self.log10phi_dex_err_low[z] = log10phi_err_low
                     self.log10phi_dex_err_upp[z] = log10phi_err_upp
                     self.log10phi_dex_err[z] = [log10phi_err_low, log10phi_err_upp]
-                    self.log10phi_mag_err_low[z] = log10phi_err_low
-                    self.log10phi_mag_err_upp[z] = log10phi_err_upp
-                    self.log10phi_dex_err[z] = [self.log10phi_mag_err_low[z], self.log10phi_mag_err_upp[z]]
+                    if self.x in ['M', 'log10L']:
+                        self.log10phi_mag_err_low[z] = log10phi_err_low
+                        self.log10phi_mag_err_upp[z] = log10phi_err_upp
+                        self.log10phi_mag_err[z] = [self.log10phi_mag_err_low[z], self.log10phi_mag_err_upp[z]]
 
             elif self.y == 'log10phi':
                 log10phi = self.t['log10phi'][s].data
@@ -585,9 +590,11 @@ class Binned:
                     self.log10phi_dex_err_low[z] = self.t['log10phi_err_low'][s].data
                     self.log10phi_dex_err_upp[z] = self.t['log10phi_err_upp'][s].data
                     self.log10phi_dex_err[z] = [self.log10phi_dex_err_low[z], self.log10phi_dex_err_upp[z]]
-                    self.log10phi_mag_err_low[z] = self.t['log10phi_err_low'][s].data
-                    self.log10phi_mag_err_upp[z] = self.t['log10phi_err_upp'][s].data
-                    self.log10phi_dex_err[z] = [self.log10phi_mag_err_low[z], self.log10phi_mag_err_upp[z]]
+
+                    if self.x in ['M', 'log10L']:
+                        self.log10phi_mag_err_low[z] = self.t['log10phi_err_low'][s].data
+                        self.log10phi_mag_err_upp[z] = self.t['log10phi_err_upp'][s].data
+                        self.log10phi_mag_err[z] = [self.log10phi_mag_err_low[z], self.log10phi_mag_err_upp[z]]
 
                     # -- should add the inverse (e.g. phi_mag_err)
 
@@ -596,11 +603,13 @@ class Binned:
 
             if self.y_unit == units.Unit('1 / (dex Mpc3)') or self.y_unit == units.Unit('dex(1 / (dex Mpc3))'):
                 self.log10phi_dex[z] = log10phi
-                self.log10phi_mag[z] = log10phi + np.log10(0.4)
+                if self.x in ['M', 'log10L']:
+                    self.log10phi_mag[z] = log10phi + np.log10(0.4)
 
             elif self.y_unit == units.Unit('1 / (mag Mpc3)') or self.y_unit == units.Unit('dex(1 / (mag Mpc3))'):
-                self.log10phi_mag[z] = log10phi
-                self.log10phi_dex[z] = log10phi - np.log10(0.4)
+                if self.x in ['M', 'log10L']:
+                    self.log10phi_mag[z] = log10phi
+                    self.log10phi_dex[z] = log10phi - np.log10(0.4)
             else:
                 print('WARNING [unit]')
 

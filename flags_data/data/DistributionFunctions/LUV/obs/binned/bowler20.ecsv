@@ -12,6 +12,7 @@
 # - {y: phi}
 # - {name: Bowler et al. (2020)}
 # - {type: binned}
+# - observatory: [VISTA]
 # - redshifts: [8, 9]
 # - references: [2022arXiv220712356D]
 # schema: astropy-2.0

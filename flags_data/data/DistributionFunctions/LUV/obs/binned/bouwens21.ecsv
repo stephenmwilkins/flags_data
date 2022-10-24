@@ -11,6 +11,7 @@
 # - {y: phi}
 # - {name: Bouwens et al. (2021)}
 # - {type: binned}
+# - observatory: [Hubble]
 # - redshifts: [2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0]
 # - references: [2021AJ....162...47B]
 # schema: astropy-2.0

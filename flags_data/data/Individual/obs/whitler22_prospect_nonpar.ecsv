@@ -7,7 +7,7 @@
 # - {name: age, unit: Myr, datatype: float64}
 # - {name: sSFR, unit: 1 / Gyr, datatype: float64}
 # meta: !!omap
-# - {name: 'W22 - Prospector non-par 100 Myr]'}
+# - {name: 'Whitler+22: Prospector binned'}
 # - {observatory: VISTA}
 # - quantities: [log10Mstar, sSFR, age]
 # - references: []

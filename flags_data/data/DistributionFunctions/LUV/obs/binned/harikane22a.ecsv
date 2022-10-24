@@ -13,6 +13,7 @@
 # - {name: Harikane et al. (2022a)}
 # - {type: binned}
 # - redshifts: [13]
+# - observatory: [Hubble]
 # - references: [2022ApJ...929....1H]
 # schema: astropy-2.0
 z M deltaM phi phi_err_low phi_err_upp

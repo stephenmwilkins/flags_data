@@ -13,6 +13,7 @@
 # - {name: Harikane et al. (2022b)}
 # - {type: binned}
 # - redshifts: [9,12,17]
+# - observatory: [Webb]
 # - references: [2022arXiv220801612H]
 # schema: astropy-2.0
 z M deltaM phi phi_err_low phi_err_upp

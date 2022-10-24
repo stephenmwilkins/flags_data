@@ -146,9 +146,12 @@ class Dataset:
 
 class Datasets:
 
-    def __init__(self, datasets = '', data_dir = data_dir):
+    def __init__(self, datasets = None, data_dir = data_dir):
 
-        self.dataset_list = list_datasets(datasets)
+        if type(datasets) == list:
+            self.dataset_list = datasets
+        else:
+            self.dataset_list = list_datasets(datasets)
 
         self.d = {ds: Dataset(ds, data_dir = data_dir) for ds in self.dataset_list}
 

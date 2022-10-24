@@ -1,0 +1,20 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: id, datatype: int64}
+# - {name: z, datatype: float64}
+# - {name: log10Mstar, unit: dex(solMass), datatype: float64}
+# meta: !!omap
+# - {name: 'Labbe+22'}
+# - {observatory: JWST}
+# - quantities: [log10Mstar]
+# - references: [2022arXiv220712446L]
+# schema: astropy-2.0
+id z log10Mstar
+14924 9.92 10.93
+38094 7.56 11.16
+2859 8.91 10.83
+16624 9.97 10.76
+21834 10.83 10.44
+35300 9.35 10.41
+13050 8.49 10.18

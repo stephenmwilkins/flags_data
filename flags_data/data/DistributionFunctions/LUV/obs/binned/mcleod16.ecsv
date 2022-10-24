@@ -13,6 +13,7 @@
 # - {name: Mcleod et al. (2016)}
 # - {type: binned}
 # - redshifts: [9,10]
+# - observatory: [Hubble]
 # - references: [2016MNRAS.459.3812M]
 # schema: astropy-2.0
 z M deltaM log10phi log10phi_err_low log10phi_err_upp

@@ -12,6 +12,7 @@
 # - {y: phi}
 # - {name: Finkelstein et al. (2022b)}
 # - {type: binned}
+# - observatory: [Webb]
 # - redshifts: [13.5]
 # - references: []
 # schema: astropy-2.0

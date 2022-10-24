@@ -46,7 +46,7 @@ def M_to_Lnu(M):
 
 def log10Lnu_to_M(log10Lnu):
 
-    return -2.5*log10Lnu-log10geo-48.6
+    return -2.5*(log10Lnu-log10geo)-48.6
 
 def M_to_log10Lnu(M):
 
