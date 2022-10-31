@@ -25,13 +25,13 @@ for z in redshifts:
     t = Table()
     t.add_column(Column(data = z*np.ones(len(M)), name = 'z'))
     t.add_column(Column(data = M, name = 'M'))
-    t.add_column(Column(data = phi, name = 'log10phi', unit = 'dex(Mpc^-3 mag^-1)'))
+    t.add_column(Column(data = phi, name = 'phi', unit = 'Mpc^-3 mag^-1'))
     tables.append(t)
 
 table = vstack(tables)
 
 table.meta['x'] = 'M'
-table.meta['y'] = 'log10phi'
+table.meta['y'] = 'phi'
 table.meta['name'] = 'GUREFT'
 table.meta['redshifts'] = list(set(table['z']))
 table.meta['type'] = 'binned'

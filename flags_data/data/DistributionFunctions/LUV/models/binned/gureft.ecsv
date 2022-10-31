@@ -3,16 +3,16 @@
 # datatype:
 # - {name: z, datatype: float64}
 # - {name: M, datatype: float64}
-# - {name: log10phi, unit: dex(1 / (mag Mpc3)), datatype: float64}
+# - {name: phi, unit: 1 / (mag Mpc3), datatype: float64}
 # meta: !!omap
 # - {x: M}
-# - {y: log10phi}
+# - {y: phi}
 # - {name: GUREFT}
 # - redshifts: [6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0]
 # - {type: binned}
 # - references: []
 # schema: astropy-2.0
-z M log10phi
+z M phi
 6.0 -5.25 1.696
 6.0 -5.75 1.616
 6.0 -6.25 2.224
