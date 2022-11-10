@@ -14,6 +14,7 @@
 # - observatory: [Hubble]
 # - redshifts: [2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0]
 # - references: [2021AJ....162...47B]
+# - {year: 2021}
 # schema: astropy-2.0
 z M phi phi_err_low phi_err_upp
 2.0 -21.11 0.00027 8.9e-05 8.9e-05

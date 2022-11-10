@@ -12,6 +12,7 @@
 # - {y: log10phi}
 # - {name: Mcleod et al. (2016)}
 # - {type: binned}
+# - {year: 2016}
 # - redshifts: [9,10]
 # - observatory: [Hubble]
 # - references: [2016MNRAS.459.3812M]

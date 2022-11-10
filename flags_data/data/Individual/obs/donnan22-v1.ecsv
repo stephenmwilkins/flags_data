@@ -32,7 +32,7 @@
 # - {name: F410M_err_low, datatype: float64}
 # - {name: F444W, datatype: float64}
 # meta: !!omap
-# - {name: Donnan et al. (2022)}
+# - {name: Donnan et al. (2022) - v1}
 # - references: []
 # - quantities: [M_UV]
 # - {observatory: Webb}

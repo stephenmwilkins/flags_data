@@ -12,6 +12,7 @@
 # - {y: phi}
 # - {name: Bowler et al. (2015)}
 # - {type: binned}
+# - {year: 2015}
 # - observatory: [VISTA]
 # - redshifts: [5.9]
 # - references: [2015MNRAS.452.1817B]

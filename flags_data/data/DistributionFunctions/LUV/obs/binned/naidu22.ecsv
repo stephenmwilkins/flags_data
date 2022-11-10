@@ -12,6 +12,7 @@
 # - {y: log10phi}
 # - {name: Naidu et al. (2022)}
 # - {type: binned}
+# - {year: 2022}
 # - observatory: [Webb]
 # - redshifts: [11.5]
 # - references: [2022arXiv220712356D]

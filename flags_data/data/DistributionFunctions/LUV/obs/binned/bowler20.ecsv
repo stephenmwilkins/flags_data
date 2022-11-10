@@ -12,6 +12,7 @@
 # - {y: phi}
 # - {name: Bowler et al. (2020)}
 # - {type: binned}
+# - {year: 2020}
 # - observatory: [VISTA]
 # - redshifts: [8, 9]
 # - references: [2022arXiv220712356D]

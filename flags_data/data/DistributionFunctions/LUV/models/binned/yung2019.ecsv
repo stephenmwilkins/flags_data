@@ -1,19 +1,15 @@
 # %ECSV 1.0
 # ---
 # datatype:
-# - {name: z, datatype: float64, description: redshift}
+# - {name: redshift, datatype: float64, description: redshift}
 # - {name: M, datatype: float64, description: absolute magnitude}
-# - {name: log10phi, datatype: float64, unit: dex(Mpc^-3 mag^-1)}
+# - {name: log10phi, datatype: float64, description: log10(phi/Mpc^-3/mag)}
 # meta: !!omap
-# - {name: Santa Cruz SAM}
-# - {x: M}
-# - {y: log10phi}
-# - {intrinsic: False}
-# - redshifts: [4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15]
+# - {name: yung2019}
+# - redshifts: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 # - {type: binned}
-# - references: [2019MNRAS.483.2983Y]
 # schema: astropy-2.0
-z M log10phi
+redshift M log10phi
 4.0 -23.5 -7.7337118439922925
 4.0 -23.0 -6.799521601127429
 4.0 -22.5 -5.581804808841267

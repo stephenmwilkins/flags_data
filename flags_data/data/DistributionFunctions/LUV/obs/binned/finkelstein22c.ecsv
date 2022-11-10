@@ -1,21 +1,25 @@
 # %ECSV 1.0
 # ---
 # datatype:
-# - {name: z, datatype: int64}
+# - {name: z, datatype: float64}
 # - {name: M, unit: mag, datatype: float64}
 # - {name: deltaM, unit: mag, datatype: float64}
+# - {name: N, datatype: float64}
+# - {name: Neff, datatype: float64}
 # - {name: phi, unit: 1 / (mag Mpc3), datatype: float64}
 # - {name: phi_err_low, unit: 1 / (mag Mpc3), datatype: float64}
 # - {name: phi_err_upp, unit: 1 / (mag Mpc3), datatype: float64}
 # meta: !!omap
 # - {x: M}
 # - {y: phi}
-# - {name: Harikane et al. (2022a)}
+# - {name: Finkelstein et al. (2022c)}
 # - {type: binned}
 # - {year: 2022}
-# - redshifts: [13]
-# - observatory: [Hubble]
-# - references: [2022ApJ...929....1H]
+# - observatory: [Webb]
+# - redshifts: [11]
+# - references: []
 # schema: astropy-2.0
-z M deltaM phi phi_err_low phi_err_upp
-13 -23.5 1.0 3.7E-8 3.0E-8 8.4E-8
+z M deltaM N Neff phi phi_err_low phi_err_upp
+11 -20.5 0.7 1 1.4 3.8E-5 2.3E-5 3.5E-5
+11 -19.8 0.7 6 4.7 14.7E-5 5.9E-5 7.2E-5
+11 -19.1 0.7 2 2.4 14.8E-5 8.1E-5 11.5E-5

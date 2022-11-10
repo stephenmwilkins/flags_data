@@ -11,8 +11,9 @@
 # meta: !!omap
 # - {x: M}
 # - {y: phi}
-# - {name: Donnan et al. (2022)}
+# - {name: Donnan et al. (2022)  - v1}
 # - {type: binned}
+# - {year: 2022}
 # - observatory: [Webb, VISTA]
 # - redshifts: [8.0, 9.0, 10.0, 11.0, 12.0, 13.75]
 # - references: [2022arXiv220712356D]

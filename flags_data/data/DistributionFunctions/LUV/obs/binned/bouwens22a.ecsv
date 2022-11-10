@@ -1,7 +1,7 @@
 # %ECSV 1.0
 # ---
 # datatype:
-# - {name: z, datatype: int64}
+# - {name: z, datatype: float64}
 # - {name: M, unit: mag, datatype: float64}
 # - {name: deltaM, unit: mag, datatype: float64}
 # - {name: phi, unit: 1 / (mag Mpc3), datatype: float64}
@@ -10,12 +10,16 @@
 # meta: !!omap
 # - {x: M}
 # - {y: phi}
-# - {name: Harikane et al. (2022a)}
+# - {name: Bouwens et al. (2022)}
 # - {type: binned}
 # - {year: 2022}
-# - redshifts: [13]
-# - observatory: [Hubble]
-# - references: [2022ApJ...929....1H]
+# - observatory: [Webb, Hubble]
+# - redshifts: [8.5, 10.5, 12.5]
+# - references: [2022arXiv221102607B]
 # schema: astropy-2.0
 z M deltaM phi phi_err_low phi_err_upp
-13 -23.5 1.0 3.7E-8 3.0E-8 8.4E-8
+8.5 -20.02 1.25 0.000164 0.000162 0.000162
+8.5 -18.77 1.25 0.000378 0.000306 0.000306
+10.5 -18.65 1.0 0.000290 0.000238 0.000238
+12.5 -20.31 1.0 0.000116 0.000094 0.000094
+12.5 -19.31 1.0 0.000190 0.000152 0.000152

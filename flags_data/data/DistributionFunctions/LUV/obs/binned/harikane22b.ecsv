@@ -12,6 +12,7 @@
 # - {y: phi}
 # - {name: Harikane et al. (2022b)}
 # - {type: binned}
+# - {year: 2022}
 # - redshifts: [9,12,17]
 # - observatory: [Webb]
 # - references: [2022arXiv220801612H]
