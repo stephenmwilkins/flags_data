@@ -1,0 +1,27 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: z, datatype: float64, description: redshift}
+# - {name: log10L, datatype: float64, unit: dex(erg s^-1)}
+# - {name: dlog10L, datatype: float64, unit: dex}
+# - {name: N, datatype: float64, description: number of galaxies in bin}
+# - {name: log10phi, datatype: float64, unit: dex(Mpc^-3 dex^-1)}
+# - {name: log10phi_err_low, datatype: float64, unit: dex}
+# - {name: log10phi_err_upp, datatype: float64, unit: dex}
+# meta: !!omap
+# - {name: Matthee et al. (2022)}
+# - {x: log10L}
+# - {y: log10phi}
+# - references: []
+# - redshifts: [6]
+# - {type: binned}
+# schema: astropy-2.0
+z log10L dlog10L N log10phi log10phi_err_low log10phi_err_upp
+6 42.25 0.2 5 -2.57 0.37 0.31
+6 42.45 0.2 15 -2.57 0.19 0.17
+6 42.65 0.2 25 -2.61 0.12 0.11
+6 42.85 0.2 12 -3.24 0.15 0.12
+6 43.05 0.2 9 -3.27 0.18 0.13
+6 43.25 0.2 7 -3.41 0.21 0.14
+6 43.45 0.2 7 -3.39 0.21 0.14
+6 43.45 0.2 3 -3.78 0.37 0.2
