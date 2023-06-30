@@ -1,0 +1,31 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: z, datatype: float64}
+# - {name: M, datatype: float64}
+# - {name: phi, datatype: float64}
+# - {name: phi_err_upp, datatype: float64}
+# - {name: phi_err_low, datatype: float64}
+# meta: !!omap
+# - {x: M}
+# - {y: phi}
+# - {name: Adams et al. (2023)}
+# - {type: binned}
+# - redshifts: [8, 9, 10.5, 12.5]
+# - {references: 'https://arxiv.org/abs/2304.13721'}
+# schema: astropy-2.0
+z M phi phi_err_upp phi_err_low
+8.0 -21.15 2.256 1.946 1.946
+8.0 -20.65 4.546 3.14 3.14
+8.0 -20.15 13.91 6.328 6.328
+8.0 -19.65 27.37 9.947 9.947
+8.0 -19.15 74.2 31.32 31.32
+9.0 -21.25 0.966 0.808 0.808
+9.0 -20.25 6.774 2.963 2.963
+9.0 -19.25 17.29 8.229 8.229
+9.0 -18.25 73.41 54.15 54.15
+10.5 -20.75 1.533 0.837 0.837
+10.5 -19.75 8.367 3.935 3.935
+10.5 -18.75 21.3 16.24 16.24
+12.5 -20.5 0.63 0.41 0.41
+12.5 -19.0 4.621 4.366 4.366
