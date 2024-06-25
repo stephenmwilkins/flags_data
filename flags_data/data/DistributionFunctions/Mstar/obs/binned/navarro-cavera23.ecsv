@@ -1,0 +1,54 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: z, datatype: float64}
+# - {name: deltaz, datatype: float64}
+# - {name: log10Mstar, unit: dex(solMass), datatype: float64}
+# - {name: deltalog10Mstar, datatype: float64}
+# - {name: phi, unit: 1 / (dex Mpc3), datatype: float64}
+# - {name: phi_err_low, unit: 1 / (dex Mpc3), datatype: float64}
+# - {name: phi_err_upp, unit: 1 / (dex Mpc3), datatype: float64}
+# meta: !!omap
+# - {x: log10Mstar}
+# - {y: phi}
+# - {name: Navarro-Carrera+23}
+# - {type: binned}
+# - observatory: [JWST]
+# - redshifts: [4,5,6,7,8]
+# - references: [2305.16141]
+# - imf: chabrier
+# schema: astropy-2.0
+z deltaz log10Mstar deltalog10Mstar phi phi_err_low phi_err_upp
+4.0 1.0 7.875 0.25 155e-4 39e-4 39e-4
+4.0 1.0 8.125 0.25 105e-4 27e-4 27e-4
+4.0 1.0 8.375 0.25 74e-4 19e-4 19e-4
+4.0 1.0 8.625 0.25 49e-4 14e-4 14e-4
+4.0 1.0 8.875 0.25 35e-4 11e-4 11e-4
+4.0 1.0 9.125 0.25 24e-4 8e-4 8e-4
+4.0 1.0 9.375 0.25 7e-4 5e-4 5e-4
+4.0 1.0 9.625 0.25 8e-4 8e-4 8e-4
+5.0 1.0 7.875 0.25 128e-4 49e-4 49e-4
+5.0 1.0 8.125 0.25 110e-4 36e-4 36e-4
+5.0 1.0 8.375 0.25 83e-4 27e-4 27e-4
+5.0 1.0 8.625 0.25 49e-4 18e-4 18e-4
+5.0 1.0 8.875 0.25 34e-4 13e-4 13e-4
+5.0 1.0 9.125 0.25 12e-4 6e-4 6e-4
+5.0 1.0 9.375 0.25 8e-4 5e-4 5e-4
+6.0 1.0 8.125 0.25 121e-4 53e-4 53e-4
+6.0 1.0 8.375 0.25 127e-4 55e-4 55e-4
+6.0 1.0 8.625 0.25 87e-4 36e-4 36e-4
+6.0 1.0 8.875 0.25 65e-4 65e-4 65e-4
+6.0 1.0 9.125 0.25 25e-4 15e-4 15e-4
+6.0 1.0 9.375 0.25 20e-4 12e-4 12e-4
+6.0 1.0 9.625 0.25 10e-4 8e-4 8e-4
+7.0 1.0 8.375 0.25 29e-4 20e-4 20e-4
+7.0 1.0 8.625 0.25 18e-4 11e-4 11e-4
+7.0 1.0 8.875 0.25 22e-4 16e-4 16e-4
+7.0 1.0 9.125 0.25 7e-4 7e-4 7e-4
+7.0 1.0 9.375 0.25 9e-4 8e-4 8e-4
+7.0 1.0 9.625 0.25 8e-4 8e-4 8e-4
+8.0 1.0 8.25 0.5 11e-4 8e-4 8e-4
+8.0 1.0 8.75 0.5 4e-4 3e-4 3e-4
+8.0 1.0 9.25 0.5 1e-4 1e-4 1e-4
+
+

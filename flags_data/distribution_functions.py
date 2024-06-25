@@ -72,7 +72,11 @@ def read(dataset, data_dir=data_dir, interp_scheme='linear'):
         d.slabel = rf'$\rm {t.meta["shortname"]}$'
     else:
         d.slabel = d.label
-
+    if 'imf' in t.meta.keys():
+        d.imf = t.meta['imf']
+    else:
+        d.imf = None
+    
     return d
 
 
