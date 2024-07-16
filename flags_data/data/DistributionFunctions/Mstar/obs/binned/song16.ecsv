@@ -11,11 +11,12 @@
 # meta: !!omap
 # - {x: log10Mstar}
 # - {y: log10phi}
-# - {name: Song et al. (2016)}
+# - {name: Song+16}
 # - {type: binned}
-# - observatory: [Huble]
+# - observatory: [Hubble]
 # - redshifts: [4,5,6,7,8]
 # - references: [2016ApJ...825....5S]
+# - imf: salpeter
 # schema: astropy-2.0
 z deltaz log10Mstar deltalog10Mstar log10phi log10phi_err_low log10phi_err_upp
 4.0 1.0 7.25 0.5 -1.57 0.16 0.21

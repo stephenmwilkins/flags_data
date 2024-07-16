@@ -1,0 +1,26 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: z, datatype: float64}
+# - {name: deltaz, datatype: float64}
+# - {name: log10Mstar, unit: dex(solMass), datatype: float64}
+# - {name: log10phi, unit: dex(1 / (dex Mpc3)), datatype: float64}
+# - {name: log10phi_err_low, unit: dex(1 / (dex Mpc3)), datatype: float64}
+# - {name: log10phi_err_upp, unit: dex(1 / (dex Mpc3)), datatype: float64}
+# meta: !!omap
+# - {x: log10Mstar}
+# - {y: log10phi}
+# - {name: Weaver+22}
+# - {type: binned}
+# - observatory: []
+# - redshifts: [7]
+# - references: []
+# - imf: chabrier
+# schema: astropy-2.0
+z deltaz log10Mstar log10phi log10phi_err_low log10phi_err_upp
+7 1 9.873913043 -4.394160584 0.245255474 0.151824818
+7 1 10.12608696 -4.616058394 0.350364964 0.198540146
+7 1 10.37826087 -4.826277372 0.502189781 0.210218978
+7 1 10.62173913 -5.2 0.864233577 0.268613139
+7 1 10.87391304 -5.550364964 1.448175182 0.338686131
+7 1 11.12608696 -5.854014599 1.144525547 0.397080292

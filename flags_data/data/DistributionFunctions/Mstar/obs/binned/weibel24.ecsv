@@ -1,0 +1,43 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: z, datatype: float64}
+# - {name: deltaz, datatype: float64}
+# - {name: log10Mstar, unit: dex(solMass), datatype: float64}
+# - {name: log10phi, unit: dex(1 / (dex Mpc3)), datatype: float64}
+# - {name: log10phi_err_low, unit: dex(1 / (dex Mpc3)), datatype: float64}
+# - {name: log10phi_err_upp, unit: dex(1 / (dex Mpc3)), datatype: float64}
+# meta: !!omap
+# - {x: log10Mstar}
+# - {y: log10phi}
+# - {name: Weibel+24}
+# - {type: binned}
+# - observatory: []
+# - redshifts: [7, 8, 9]
+# - references: [2403.08872]
+# - imf: kroupa
+# schema: astropy-2.0
+z deltaz log10Mstar log10phi log10phi_err_low log10phi_err_upp
+7 1 8.25 -2.40 0.24 0.15
+7 1 8.75 -2.70 0.20 0.14
+7 1 9.25 -3.35 0.21 0.14
+7 1 9.75 -3.96 0.33 0.19
+7 1 10.25 -4.35 0.58 0.25
+7 1 10.75 -4.78 10 0.38
+7 1 11.25 -5.38 10 0.43
+7 1 11.75 -5.69 10 0.55
+8 1 8.75 -3.00 0.28 0.18
+8 1 9.25 -3.64 0.33 0.19
+8 1 9.75 -4.09 0.55 0.24
+8 1 10.25 -4.33 1.39 0.30
+8 1 10.75 -4.78 10 0.45
+8 1 11.25 -5.54 10 0.57
+8 1 11.75 -5.66 10 0.56
+9 1 8.75 -3.39 0.64 0.25
+9 1 9.25 -3.81 0.52 0.24
+9 1 9.75 -4.35 1.54 0.31
+9 1 10.25 -4.79 10 0.40
+9 1 10.75 -5.27 10 0.54
+9 1 11.25 -5.61 10 0.64
+9 1 11.75 -5.61 10 0.61
+
